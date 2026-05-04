@@ -1,0 +1,66 @@
+---
+layout: page
+title: Mehmet Aykurt
+subtitle: Şiir, edebiyat, müzik ve kişisel çalışmalar
+---
+
+<section aria-labelledby="arama-basligi">
+  <h2 id="arama-basligi">Sitede Ara</h2>
+
+  <form action="{{ '/arama' | relative_url }}" method="get" role="search">
+    <label for="arama-kutusu">Aranacak kelime veya ifade</label>
+    <input
+      type="search"
+      id="arama-kutusu"
+      name="q"
+      placeholder="Şiir, yazı veya eklenti ara"
+    >
+    <button type="submit">Ara</button>
+  </form>
+</section>
+
+<section aria-labelledby="son-paylasimlar-basligi">
+  <h2 id="son-paylasimlar-basligi">Son Paylaşımlar</h2>
+
+  {% for post in site.posts limit:5 %}
+    <article>
+      <h3>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h3>
+
+      <p>
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%d.%m.%Y" }}
+        </time>
+      </p>
+
+      <p>
+        {{ post.excerpt | strip_html | truncatewords: 45 }}
+      </p>
+
+      <p>
+        <a href="{{ post.url | relative_url }}">Devamını oku</a>
+      </p>
+    </article>
+  {% else %}
+    <p>Henüz yayımlanmış içerik bulunmuyor. İlk şiir, yazı veya çalışma eklendiğinde burada görünecektir.</p>
+  {% endfor %}
+</section>
+
+<section aria-labelledby="son-eklenenler-basligi">
+  <h2 id="son-eklenenler-basligi">Son Eklenen İçerikler</h2>
+
+  <ul>
+    {% for post in site.posts limit:10 %}
+      <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        -
+        <time datetime="{{ post.date | date_to_xmlschema }}">
+          {{ post.date | date: "%d.%m.%Y" }}
+        </time>
+      </li>
+    {% else %}
+      <li>Henüz içerik eklenmedi.</li>
+    {% endfor %}
+  </ul>
+</section>
