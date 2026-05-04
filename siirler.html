@@ -1,0 +1,38 @@
+---
+layout: page
+title: Şiirler
+subtitle: Mehmet Aykurt şiir arşivi
+permalink: /siirler/
+---
+
+<section aria-labelledby="siirler-basligi">
+  <h2 id="siirler-basligi">Şiirler</h2>
+
+  <p>
+    Bu bölümde geleneksel Türk halk şiiri çizgisinde kaleme aldığım şiirler yer alacaktır.
+  </p>
+
+  <p>
+    Şiirler, eklenme tarihine göre en yeniden en eskiye doğru listelenir.
+  </p>
+
+  {% assign siirler = site.posts | where_exp: "post", "post.categories contains 'siirler'" %}
+
+  {% if siirler.size > 0 %}
+    <ul>
+      {% for post in siirler %}
+        <li>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          -
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%d.%m.%Y" }}
+          </time>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>
+      Henüz yayımlanmış şiir bulunmuyor. İlk şiir eklendiğinde burada listelenecektir.
+    </p>
+  {% endif %}
+</section>
