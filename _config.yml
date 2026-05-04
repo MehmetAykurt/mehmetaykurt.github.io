@@ -8,11 +8,11 @@ url: "https://mehmetaykurt.com.tr"
 baseurl: ""
 
 navbar-links:
-  ANA SAYFA: ""
-  HAKKIMDA: "hakkimda"
-  İLETİŞİM: "iletisim"
-  ŞİİRLER: "siirler"
-  EKLENTİLER: "eklentiler"
+  Ana Sayfa: ""
+  Hakkımda: "hakkimda"
+  İletişim: "iletisim"
+  Şiirler: "siirler"
+  Eklentiler: "eklentiler"
 
 post_search: true
 edit_page_button: false
