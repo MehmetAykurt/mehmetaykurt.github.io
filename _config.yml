@@ -1,26 +1,24 @@
 remote_theme: daattali/beautiful-jekyll@6.0.1
 
-title: Mehmet Aykurt
+title: Mehmet Aykurt Kişisel Web Sitesi
 author: Mehmet Aykurt
-description: Şiir, edebiyat, müzik ve kişisel çalışmalar
+description: Hoş geldiniz.
 
 url: "https://mehmetaykurt.com.tr"
 baseurl: ""
 
 navbar-links:
-  Ana Sayfa: ""
-  Hakkımda: "hakkimda"
-  İletişim: "iletisim"
-  Şiirler: "siirler"
-  Eklentiler: "eklentiler"
-
-social-network-links:
-  email: "m.aykurt38@gmail.com"
-  github: mehmetaykurt
+  ANA SAYFA: ""
+  HAKKIMDA: "hakkimda"
+  İLETİŞİM: "iletisim"
+  ŞİİRLER: "siirler"
+  EKLENTİLER: "eklentiler"
 
 post_search: true
 edit_page_button: false
 rss-description: Mehmet Aykurt kişisel web sitesi
+
+excerpt_separator: "<!--more-->"
 
 plugins:
   - jekyll-remote-theme

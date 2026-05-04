@@ -1,14 +1,15 @@
 ---
 layout: page
-title: Sitede Ara
+title: Site İçi Arama
 subtitle: Şiirler, yazılar ve çalışmalar içinde arama
+permalink: /arama/
 ---
 
 <section aria-labelledby="arama-sayfasi-basligi">
-  <h2 id="arama-sayfasi-basligi">Sitede Ara</h2>
+  <h2 id="arama-sayfasi-basligi">Site İçi Arama</h2>
 
-  <form action="{{ '/arama' | relative_url }}" method="get" role="search">
-    <label for="arama-kutusu">Aranacak kelime veya ifade</label>
+  <form action="{{ '/arama/' | relative_url }}" method="get" role="search">
+    <label for="arama-kutusu">Aranacak kelimeyi yazınız.</label>
 
     <input
       type="search"

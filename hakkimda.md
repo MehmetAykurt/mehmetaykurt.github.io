@@ -19,7 +19,7 @@ Yazı çalışmalarımda insanın iç sesi, hatıralar, kırılmalar, umutlar ve
 
 Müzik alanında bağlama ve çeşitli ritim sazlarıyla ilgileniyorum. Müzik benim için sözün tamamlayıcısı, duygunun başka bir dili ve kültürel hafızamızın önemli bir taşıyıcısıdır.
 
-Ayrıca erişilebilirlik alanında kişisel çalışmalar yürütmekteyim. Özellikle NVDA ekran okuyucu için hazırladığım eklentiler ve benzeri çalışmalarla, bilgisayar kullanımını daha pratik ve erişilebilir hale getirmeye katkı sunmayı amaçlıyorum.
+Ayrıca erişilebilirlik alanında kişisel çalışmalar yürütmekteyim. Özellikle NVDA ekran okuyucu için hazırladığım eklentiler ve benzeri çalışmalarla bilgisayar kullanımını daha pratik ve erişilebilir hâle getirmeye katkı sunmayı amaçlıyorum.
 
 Bu web sitesi; şiirlerimi, yazılarımı, müzikle ilgili çalışmalarımı, kitap ve roman projelerimi, ayrıca erişilebilirlik odaklı üretimlerimi düzenli biçimde paylaşmak amacıyla hazırlanmıştır.
 
