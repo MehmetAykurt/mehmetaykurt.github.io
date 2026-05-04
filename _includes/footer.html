@@ -1,0 +1,38 @@
+<footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+
+        {% include social-networks-links.html %}
+
+        <nav aria-label="Alt menü">
+          <p class="text-muted">
+            <a href="{{ '/' | relative_url }}">Ana Sayfa</a>
+            &nbsp;&bull;&nbsp;
+            <a href="{{ '/hakkimda' | relative_url }}">Hakkımda</a>
+            &nbsp;&bull;&nbsp;
+            <a href="{{ '/iletisim' | relative_url }}">İletişim</a>
+            &nbsp;&bull;&nbsp;
+            <a href="{{ '/siirler' | relative_url }}">Şiirler</a>
+            &nbsp;&bull;&nbsp;
+            <a href="{{ '/eklentiler' | relative_url }}">Eklentiler</a>
+          </p>
+        </nav>
+
+        <p class="copyright text-muted">
+          Telif hakkı © {{ site.time | date: '%Y' }} Mehmet Aykurt. Tüm hakları saklıdır.
+        </p>
+
+        <p class="text-muted">
+          Bu sitede yer alan şiir, yazı, müzik, eklenti ve diğer kişisel çalışmaların izinsiz kopyalanması, çoğaltılması veya farklı adla yayımlanması uygun değildir.
+        </p>
+
+        <p class="theme-by text-muted">
+          Altyapı:
+          <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</footer>
