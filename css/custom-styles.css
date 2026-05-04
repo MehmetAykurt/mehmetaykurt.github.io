@@ -1,0 +1,8 @@
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link,
+.navbar-custom .navbar-nav li a,
+.navbar-nav .nav-link,
+nav.navbar a {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
