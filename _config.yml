@@ -1,0 +1,49 @@
+remote_theme: "mmistakes/so-simple-theme@3.2.0"
+
+locale: tr-TR
+title: "Mehmet Aykurt - Kişisel Web Sitesi"
+name: "Mehmet Aykurt"
+description: "Mehmet Aykurt tarafından hazırlanan şiir, yazı, çalışma ve erişilebilirlik odaklı eklentilerin kişisel yayın alanı."
+url: "https://mehmetaykurt.com.tr"
+baseurl: ""
+skin: "/assets/css/skins/light.css"
+date_format: "%d.%m.%Y"
+read_time: false
+words_per_minute: 200
+
+search_full_content: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+permalink: /:categories/:title/
+
+# Site yazarı
+author:
+  name: "Mehmet Aykurt"
+  email: "m.aykurt38@gmail.com"
+
+# Alt yazı / telif alanı. Telif kayıt numarası alındığında köşeli parantezli kısmı değiştiriniz.
+copyright: >
+  **Telif ve yayın hakkı bildirimi:** Bu sitede yer alan şiirler, edebî metinler, yazılar, çalışmalar, yazılım tanıtımları ve diğer tüm özgün içerikler Mehmet Aykurt'a aittir. İzinsiz çoğaltılamaz, değiştirilemez, başka bir ad altında yayımlanamaz ve ticari yahut gayriticari herhangi bir mecrada kaynak gösterilmeden kullanılamaz. Telif Hakkı Kayıt No: **[Buraya resmi telif kayıt numaranızı yazınız]**. © Mehmet Aykurt - 2026. Tüm hakları saklıdır.
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: "Mehmet Aykurt"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page
