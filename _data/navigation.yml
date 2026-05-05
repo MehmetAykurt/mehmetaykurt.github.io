@@ -1,0 +1,11 @@
+main:
+  - title: "Ana Sayfa"
+    url: /
+  - title: "Hakkımızda"
+    url: /hakkimizda/
+  - title: "Şiirlerim"
+    url: /siirlerim/
+  - title: "Eklentiler"
+    url: /eklentiler/
+  - title: "İletişim"
+    url: /iletisim/
