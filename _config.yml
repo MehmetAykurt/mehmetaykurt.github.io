@@ -7,18 +7,9 @@ baseurl: ""
 # Tema Ayarı (So Simple Teması)
 remote_theme: "mmistakes/so-simple-theme"
 
-# Menü Yapılandırması (Navigation)
-navigation:
-  - title: "Ana Sayfa"
-    url: /
-  - title: "Hakkımızda"
-    url: /hakkimizda/
-  - title: "İletişim"
-    url: /iletisim/
-  - title: "Şiirlerim"
-    url: /siirlerim/
-  - title: "Eklentiler"
-    url: /eklentiler/
+# Menü Yapılandırması
+masthead:
+  nav: "main"
 
 # Arama Özelliği
 search: true
