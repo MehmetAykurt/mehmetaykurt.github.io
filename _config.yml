@@ -1,0 +1,28 @@
+# Site Bilgileri
+title: "Mehmet Aykurt - Kişisel Web Sitesi"
+description: "Şiirler ve Çalışmalar"
+url: "https://mehmetaykurt.com.tr"
+baseurl: ""
+
+# Tema Ayarı (So Simple Teması)
+remote_theme: "mmistakes/so-simple-theme"
+
+# Menü Yapılandırması (Navigation)
+navigation:
+  - title: "Ana Sayfa"
+    url: /
+  - title: "Hakkımızda"
+    url: /hakkimizda/
+  - title: "İletişim"
+    url: /iletisim/
+  - title: "Şiirlerim"
+    url: /siirlerim/
+  - title: "Eklentiler"
+    url: /eklentiler/
+
+# Arama Özelliği
+search: true
+
+# Telif Yazısı (Footer)
+footer:
+  copyright: "Mehmet Aykurt - 2026"
