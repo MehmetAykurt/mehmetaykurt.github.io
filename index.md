@@ -3,29 +3,6 @@ layout: page
 title: ""
 ---
 
-# Mehmet Aykurt Kişisel Web Sitesi
-
-Hoş Geldiniz
-
-## Ana Menü
-
-[Ana Sayfa](/)  
-[Hakkımızda](/hakkimizda/)  
-[İletişim](/iletisim/)  
-[Şiirler](/siirler/)  
-[NVDA Eklenti Projeleri](/nvda-eklenti-projeleri/)
-
----
-
-## Site İçi Arama
-
-<form action="/search/">
-<input type="search" name="q" placeholder="Site içinde ara">
-<button type="submit">Ara</button>
-</form>
-
----
-
 ## Site İçeriği
 
 ### Sessizliğin İçinden
@@ -92,11 +69,3 @@ Ve ben seni düşünürüm yine
 </li>
 {% endfor %}
 </ul>
-
----
-
-## Telif Bildirimi
-
-Bu internet sitesinde yer alan tüm şiirler, yazılar, projeler ve içerikler Mehmet Aykurt’a aittir.
-
-İzinsiz kopyalanamaz, çoğaltılamaz veya yayımlanamaz.
