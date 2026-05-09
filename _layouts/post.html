@@ -2,11 +2,11 @@
 layout: default
 ---
 
-<article class="h-entry">
+<article class="h-entry post-entry">
   {% include page-image.html %}
 
   <div class="page-wrapper">
-    <header class="page-header">
+    <header class="page-header post-header">
       {% assign title = page.title | markdownify | strip_html %}
 
       {% if page.link %}
@@ -23,7 +23,7 @@ layout: default
     </header>
 
     <div class="page-content">
-      <div class="e-content">
+      <div class="e-content poem-content">
         {{ content }}
       </div>
 
