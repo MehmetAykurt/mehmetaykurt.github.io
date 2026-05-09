@@ -19,12 +19,10 @@ words_per_minute: 200
 
 search_full_content: true
 
+copyright: "© Mehmet Aykurt 2026 — Tüm hakları saklıdır."
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-remote-theme
-
-footer_links:
-  - title: "GitHub"
-    url: "https://github.com/MehmetAykurt"
