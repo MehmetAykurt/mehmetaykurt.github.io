@@ -9,11 +9,11 @@ Hoş Geldiniz
 
 ## Ana Menü
 
-- [Ana Sayfa](/)
-- [Hakkımızda](/hakkimizda/)
-- [İletişim](/iletisim/)
-- [Şiirler](/siirler/)
-- [NVDA Eklenti Projeleri](/nvda-eklenti-projeleri/)
+[Ana Sayfa](/)  
+[Hakkımızda](/hakkimizda/)  
+[İletişim](/iletisim/)  
+[Şiirler](/siirler/)  
+[NVDA Eklenti Projeleri](/nvda-eklenti-projeleri/)
 
 ---
 
