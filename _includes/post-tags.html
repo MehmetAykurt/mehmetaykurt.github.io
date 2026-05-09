@@ -1,0 +1,10 @@
+{% if page.tags and page.tags.size > 0 %}
+<section class="post-tags" aria-label="Etiketler">
+  <h2>Etiketler</h2>
+  <p>
+    {% for tag in page.tags %}
+      <span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </p>
+</section>
+{% endif %}
