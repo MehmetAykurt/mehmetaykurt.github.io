@@ -1,5 +1,21 @@
 <!-- start custom head snippets -->
 
+{% assign social_title = page.title | default: site.title %}
+{% assign social_description = page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 200 %}
+{% assign social_url = page.url | absolute_url %}
+{% assign social_image = '/assets/images/favicon.png' | absolute_url %}
+
+<meta property="og:title" content="{{ social_title | escape }}">
+<meta property="og:description" content="{{ social_description | escape }}">
+<meta property="og:url" content="{{ social_url }}">
+<meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+<meta property="og:image" content="{{ social_image }}">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ social_title | escape }}">
+<meta name="twitter:description" content="{{ social_description | escape }}">
+<meta name="twitter:image" content="{{ social_image }}">
+
 <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
 <link rel="shortcut icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
 <link rel="apple-touch-icon" href="{{ '/assets/images/favicon.png' | relative_url }}">
