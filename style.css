@@ -17,7 +17,6 @@
   --genislik-site: 960px;
   --genislik-okuma: 800px;
 
-  --bosluk-kucuk: 0.75rem;
   --bosluk-normal: 1rem;
   --bosluk-buyuk: 1.5rem;
   --bosluk-cok-buyuk: 2.5rem;
@@ -25,30 +24,34 @@
   --kenar-yumusak: 0.75rem;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 html {
-  font-size: 100%;
+  font-size: 18px;
   scroll-behavior: smooth;
+  font-family: "Segoe UI", Tahoma, Arial, Helvetica, sans-serif;
 }
 
 body {
   margin: 0;
   background: var(--renk-arka-plan);
   color: var(--renk-yazi);
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 1.125rem;
+  font-family: "Segoe UI", Tahoma, Arial, Helvetica, sans-serif !important;
+  font-size: 18px;
   line-height: 1.75;
 }
 
-body,
 input,
 button,
 textarea,
 select {
-  font: inherit;
+  font-family: "Segoe UI", Tahoma, Arial, Helvetica, sans-serif !important;
+  font-size: 18px;
 }
 
 a {
@@ -265,8 +268,19 @@ select:focus {
 }
 
 @media (max-width: 520px) {
+  html {
+    font-size: 17px;
+  }
+
   body {
-    font-size: 1.05rem;
+    font-size: 17px;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font-size: 17px;
   }
 
   .site-kapsayici {
