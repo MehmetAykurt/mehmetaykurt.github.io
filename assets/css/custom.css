@@ -7,7 +7,7 @@ html {
 body {
   line-height: 1.7;
   color: #222;
-  background: #f7f7f7;
+  background: #f3f3f3;
 }
 
 .site-header,
@@ -91,7 +91,7 @@ main h2 {
 
 main h3 {
   font-size: 1.25rem;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 main p,
@@ -103,6 +103,49 @@ main p,
 main ul,
 .site-footer ul {
   padding-left: 1.5rem;
+}
+
+.content-card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.content-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.content-date {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0;
+}
+
+.content-excerpt {
+  margin-top: 1rem;
+}
+
+.read-more {
+  font-weight: 600;
+}
+
+.recent-list p {
+  margin: 0.5rem 0;
+}
+
+.page-date {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.post-tags {
+  margin-top: 1rem;
+}
+
+.share-links {
+  margin-top: 1rem;
 }
 
 hr {
