@@ -26,7 +26,7 @@ Hoş Geldiniz
 
 ---
 
-## Şiirlerden Seçmeler
+## Site İçeriği
 
 ### Sessizliğin İçinden
 
