@@ -1,6 +1,6 @@
 ---
-layout: home
-title: "Mehmet Aykurt Kişisel Web Sitesi"
+layout: page
+title: ""
 ---
 
 # Mehmet Aykurt Kişisel Web Sitesi
@@ -100,5 +100,3 @@ Ve ben seni düşünürüm yine
 Bu internet sitesinde yer alan tüm şiirler, yazılar, projeler ve içerikler Mehmet Aykurt’a aittir.
 
 İzinsiz kopyalanamaz, çoğaltılamaz veya yayımlanamaz.
-
-© Mehmet Aykurt 2026 — Tüm hakları saklıdır.
