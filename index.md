@@ -5,22 +5,26 @@ title: ""
 
 ## Site İçeriği
 
+<div class="content-list">
 {% for post in site.posts limit:5 %}
-### {{ post.title }}
+  <article class="content-card">
+    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
 
-{{ post.excerpt }}
+    <p class="content-date">{{ post.date | date: "%d %B %Y" }}</p>
 
-[Devamını Oku...]({{ post.url }})
+    <div class="content-excerpt">
+      {{ post.excerpt }}
+    </div>
 
----
+    <p><a class="read-more" href="{{ post.url }}">Devamını Oku...</a></p>
+  </article>
 {% endfor %}
+</div>
 
 ## En Son Eklenenler
 
-<ul>
+<div class="recent-list">
 {% for post in site.posts limit:10 %}
-<li>
-<a href="{{ post.url }}">{{ post.title }}</a>
-</li>
+  <p><a href="{{ post.url }}">{{ post.title }}</a></p>
 {% endfor %}
-</ul>
+</div>
