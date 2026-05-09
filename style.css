@@ -1,7 +1,7 @@
 /*
   Mehmet Aykurt Kişisel Web Sitesi
   Genel stil dosyası
-  Amaç: Tek sütunlu, sade, edebî, zarif ve erişilebilir görünüm.
+  Amaç: Tek sütunlu, sade, zarif, okunabilir ve erişilebilir görünüm.
 */
 
 :root {
@@ -38,7 +38,7 @@ body {
   margin: 0;
   background: var(--renk-arka-plan);
   color: var(--renk-yazi);
-  font-family: Georgia, Cambria, serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.75;
 }
