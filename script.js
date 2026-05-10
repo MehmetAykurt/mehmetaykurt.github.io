@@ -224,4 +224,32 @@ async function aramaSayfasiniHazirla() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", aramaSayfasiniHazirla);
+function baglantiKopyalamaHazirla() {
+  const dugme = document.getElementById("baglanti-kopyala");
+  const durum = document.getElementById("kopyalama-durumu");
+
+  if (!dugme || !durum) {
+    return;
+  }
+
+  dugme.addEventListener("click", async () => {
+    const baglanti = dugme.dataset.baglanti;
+
+    if (!baglanti) {
+      durum.textContent = "Kopyalanacak bağlantı bulunamadı.";
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(baglanti);
+      durum.textContent = "Sayfa bağlantısı panoya kopyalandı.";
+    } catch {
+      durum.textContent = "Bağlantı kopyalanırken bir sorun oluştu.";
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  aramaSayfasiniHazirla();
+  baglantiKopyalamaHazirla();
+});
