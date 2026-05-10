@@ -1,21 +1,3 @@
-const aranacakSayfalar = [
-  "index.html",
-  "hakkimda.html",
-  "iletisim.html",
-  "siirler.html",
-  "nvda-projeleri.html",
-  "siirler/haberin-olmaz.html",
-  "siirler/yaylada-bir-guzel-gordum.html",
-  "siirler/ariyor.html",
-  "siirler/ne-guzel-uymus.html",
-  "siirler/yaralama-gel-beni.html",
-  "siirler/ask-hesabi.html",
-  "siirler/sevgi-dedigin.html",
-  "siirler/var.html",
-  "siirler/insanin-gonlune-sevda-duserse.html",
-  "siirler/oldurur-beni.html"
-];
-
 function metniTemizle(metin) {
   return String(metin)
     .toLocaleLowerCase("tr-TR")
@@ -34,6 +16,77 @@ function parametreAl(ad) {
 
 function fazlaBosluklariTemizle(metin) {
   return String(metin).replace(/\s+/g, " ").trim();
+}
+
+function adresiYolaCevir(adres) {
+  try {
+    const url = new URL(adres);
+    let yol = url.pathname;
+
+    if (yol === "/") {
+      return "index.html";
+    }
+
+    if (yol.startsWith("/")) {
+      yol = yol.slice(1);
+    }
+
+    return yol;
+  } catch {
+    return adres;
+  }
+}
+
+async function sitemapOku() {
+  const cevap = await fetch("sitemap.xml?v=20260509-1", {
+    cache: "no-store"
+  });
+
+  if (!cevap.ok) {
+    throw new Error("sitemap.xml okunamadı");
+  }
+
+  const xmlMetni = await cevap.text();
+  const ayrıştırıcı = new DOMParser();
+  const belge = ayrıştırıcı.parseFromString(xmlMetni, "application/xml");
+
+  const adresler = Array.from(belge.querySelectorAll("url loc"))
+    .map((loc) => loc.textContent.trim())
+    .filter(Boolean)
+    .map(adresiYolaCevir)
+    .filter((adres) => !adres.includes("arama.html"));
+
+  return adresler;
+}
+
+async function sayfaOku(adres) {
+  const cevap = await fetch(adres, {
+    cache: "no-store"
+  });
+
+  if (!cevap.ok) {
+    throw new Error(`${adres} okunamadı`);
+  }
+
+  const htmlMetni = await cevap.text();
+  const ayrıştırıcı = new DOMParser();
+  const belge = ayrıştırıcı.parseFromString(htmlMetni, "text/html");
+
+  const baslik =
+    belge.querySelector("main h2")?.textContent ||
+    belge.querySelector("title")?.textContent ||
+    adres;
+
+  const anaIcerik =
+    belge.querySelector("main")?.textContent ||
+    belge.body?.textContent ||
+    "";
+
+  return {
+    adres,
+    baslik: fazlaBosluklariTemizle(baslik),
+    metin: fazlaBosluklariTemizle(anaIcerik)
+  };
 }
 
 function kisaOzetOlustur(metin, sorgu) {
@@ -84,34 +137,6 @@ function sonucOlustur(sonuc) {
   return madde;
 }
 
-async function sayfaOku(adres) {
-  const cevap = await fetch(adres, { cache: "no-store" });
-
-  if (!cevap.ok) {
-    throw new Error(`${adres} okunamadı`);
-  }
-
-  const htmlMetni = await cevap.text();
-  const ayrıştırıcı = new DOMParser();
-  const belge = ayrıştırıcı.parseFromString(htmlMetni, "text/html");
-
-  const baslik =
-    belge.querySelector("main h2")?.textContent ||
-    belge.querySelector("title")?.textContent ||
-    adres;
-
-  const anaIcerik =
-    belge.querySelector("main")?.textContent ||
-    belge.body?.textContent ||
-    "";
-
-  return {
-    adres,
-    baslik: fazlaBosluklariTemizle(baslik),
-    metin: fazlaBosluklariTemizle(anaIcerik)
-  };
-}
-
 async function aramaYap(sorgu) {
   const temizSorgu = metniTemizle(sorgu).trim();
 
@@ -119,9 +144,10 @@ async function aramaYap(sorgu) {
     return [];
   }
 
+  const sayfaAdresleri = await sitemapOku();
   const sonuclar = [];
 
-  for (const adres of aranacakSayfalar) {
+  for (const adres of sayfaAdresleri) {
     try {
       const sayfa = await sayfaOku(adres);
       const aranacakMetin = metniTemizle(`${sayfa.baslik} ${sayfa.metin}`);
@@ -160,22 +186,27 @@ async function aramaSayfasiniHazirla() {
     return;
   }
 
-  aramaDurumu.textContent = "Sayfalar aranıyor lütfen bekleyin.";
+  aramaDurumu.textContent = "Sitemap okunuyor ve sayfalar aranıyor lütfen bekleyin.";
 
-  const sonuclar = await aramaYap(sorgu);
+  try {
+    const sonuclar = await aramaYap(sorgu);
 
-  aramaSonuclari.innerHTML = "";
+    aramaSonuclari.innerHTML = "";
 
-  if (sonuclar.length === 0) {
-    aramaDurumu.textContent = `"${sorgu}" araması için sonuç bulunamadı.`;
-    return;
+    if (sonuclar.length === 0) {
+      aramaDurumu.textContent = `"${sorgu}" araması için sonuç bulunamadı.`;
+      return;
+    }
+
+    aramaDurumu.textContent = `"${sorgu}" araması için ${sonuclar.length} sonuç bulundu.`;
+
+    sonuclar.forEach((sonuc) => {
+      aramaSonuclari.appendChild(sonucOlustur(sonuc));
+    });
+  } catch (hata) {
+    aramaDurumu.textContent = "Arama yapılırken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.";
+    console.error(hata);
   }
-
-  aramaDurumu.textContent = `"${sorgu}" araması için ${sonuclar.length} sonuç bulundu.`;
-
-  sonuclar.forEach((sonuc) => {
-    aramaSonuclari.appendChild(sonucOlustur(sonuc));
-  });
 }
 
 document.addEventListener("DOMContentLoaded", aramaSayfasiniHazirla);
