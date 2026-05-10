@@ -227,6 +227,22 @@ select:focus {
   line-height: 1.35;
 }
 
+.siir-metni {
+  max-width: 36rem;
+  margin: 0 auto;
+  font-size: 1.12rem;
+  line-height: 1.9;
+}
+
+.siir-metni p {
+  margin-top: 0;
+  margin-bottom: 1.8rem;
+}
+
+.siir-metni p:last-child {
+  margin-bottom: 0;
+}
+
 .son-eklenenler ol {
   margin-bottom: 0;
   padding-left: 1.5rem;
@@ -308,6 +324,16 @@ select:focus {
   .son-eklenenler,
   .footer-icerik {
     padding: var(--bosluk-normal);
+  }
+
+  .siir-metni {
+    max-width: 100%;
+    font-size: 1.05rem;
+    line-height: 1.85;
+  }
+
+  .siir-metni p {
+    margin-bottom: 1.5rem;
   }
 }
 
