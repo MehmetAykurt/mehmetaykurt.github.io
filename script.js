@@ -1,34 +1,19 @@
-const siteIcerikleri = [
-  {
-    baslik: "Ana Sayfa",
-    adres: "index.html",
-    aciklama: "Mehmet Aykurt Kişisel Web Sitesi ana sayfası. Hoş geldiniz bölümü, son şiirlerden seçmeler ve son eklenen içerikler.",
-    anahtarKelimeler: "ana sayfa hoş geldiniz son şiirler son eklenen içerikler mehmet aykurt"
-  },
-  {
-    baslik: "Hakkımda",
-    adres: "hakkimda.html",
-    aciklama: "Mehmet Aykurt hakkında kısa tanıtım. Şiir yolculuğu, erişilebilirlik çalışmaları ve sitenin amacı.",
-    anahtarKelimeler: "hakkımda mehmet aykurt 1981 kayseri şiir edebiyat erişilebilirlik site amacı"
-  },
-  {
-    baslik: "İletişim",
-    adres: "iletisim.html",
-    aciklama: "Siteyle ilgili görüş, öneri ve mesajlar için hazırlanan iletişim sayfası. Google Form daha sonra eklenecektir.",
-    anahtarKelimeler: "iletişim mesaj öneri görüş google form telif izin bildirim"
-  },
-  {
-    baslik: "Şiirler",
-    adres: "siirler.html",
-    aciklama: "Mehmet Aykurt’un geleneksel Türk halk şiiri çizgisinde kaleme aldığı şiirlerin yer alacağı bölüm.",
-    anahtarKelimeler: "şiir şiirler geleneksel türk halk şiiri türkhalk halk şiiri dize kıta gönül memleket ayrılık umut"
-  },
-  {
-    baslik: "NVDA Projeleri",
-    adres: "nvda-projeleri.html",
-    aciklama: "Ekran okuyucu kullanan bireyler için hazırlanan kişisel erişilebilirlik çalışmaları, belgeler ve kullanım notları.",
-    anahtarKelimeler: "nvda projeleri erişilebilirlik ekran okuyucu görme engelli belge kullanım notları çalışma"
-  }
+const aranacakSayfalar = [
+  "index.html",
+  "hakkimda.html",
+  "iletisim.html",
+  "siirler.html",
+  "nvda-projeleri.html",
+  "siirler/haberin-olmaz.html",
+  "siirler/yaylada-bir-guzel-gordum.html",
+  "siirler/ariyor.html",
+  "siirler/ne-guzel-uymus.html",
+  "siirler/yaralama-gel-beni.html",
+  "siirler/ask-hesabi.html",
+  "siirler/sevgi-dedigin.html",
+  "siirler/var.html",
+  "siirler/insanin-gonlune-sevda-duserse.html",
+  "siirler/oldurur-beni.html"
 ];
 
 function metniTemizle(metin) {
@@ -47,36 +32,51 @@ function parametreAl(ad) {
   return adresParametreleri.get(ad) || "";
 }
 
-function aramaYap(sorgu) {
-  const temizSorgu = metniTemizle(sorgu).trim();
-
-  if (!temizSorgu) {
-    return [];
-  }
-
-  return siteIcerikleri.filter((icerik) => {
-    const aranacakMetin = metniTemizle(
-      `${icerik.baslik} ${icerik.aciklama} ${icerik.anahtarKelimeler}`
-    );
-
-    return aranacakMetin.includes(temizSorgu);
-  });
+function fazlaBosluklariTemizle(metin) {
+  return String(metin).replace(/\s+/g, " ").trim();
 }
 
-function sonucOlustur(icerik) {
+function kisaOzetOlustur(metin, sorgu) {
+  const temizMetin = fazlaBosluklariTemizle(metin);
+  const temizMetinArama = metniTemizle(temizMetin);
+  const temizSorgu = metniTemizle(sorgu);
+
+  const bulunanYer = temizMetinArama.indexOf(temizSorgu);
+
+  if (bulunanYer === -1) {
+    return temizMetin.slice(0, 180);
+  }
+
+  const baslangic = Math.max(0, bulunanYer - 70);
+  const bitis = Math.min(temizMetin.length, bulunanYer + temizSorgu.length + 120);
+
+  let ozet = temizMetin.slice(baslangic, bitis);
+
+  if (baslangic > 0) {
+    ozet = "..." + ozet;
+  }
+
+  if (bitis < temizMetin.length) {
+    ozet = ozet + "...";
+  }
+
+  return ozet;
+}
+
+function sonucOlustur(sonuc) {
   const madde = document.createElement("article");
   madde.className = "siir-ozeti";
 
   const baslik = document.createElement("h3");
   const baglanti = document.createElement("a");
 
-  baglanti.href = icerik.adres;
-  baglanti.textContent = icerik.baslik;
+  baglanti.href = sonuc.adres;
+  baglanti.textContent = sonuc.baslik;
 
   baslik.appendChild(baglanti);
 
   const aciklama = document.createElement("p");
-  aciklama.textContent = icerik.aciklama;
+  aciklama.textContent = sonuc.ozet;
 
   madde.appendChild(baslik);
   madde.appendChild(aciklama);
@@ -84,7 +84,64 @@ function sonucOlustur(icerik) {
   return madde;
 }
 
-function aramaSayfasiniHazirla() {
+async function sayfaOku(adres) {
+  const cevap = await fetch(adres, { cache: "no-store" });
+
+  if (!cevap.ok) {
+    throw new Error(`${adres} okunamadı`);
+  }
+
+  const htmlMetni = await cevap.text();
+  const ayrıştırıcı = new DOMParser();
+  const belge = ayrıştırıcı.parseFromString(htmlMetni, "text/html");
+
+  const baslik =
+    belge.querySelector("main h2")?.textContent ||
+    belge.querySelector("title")?.textContent ||
+    adres;
+
+  const anaIcerik =
+    belge.querySelector("main")?.textContent ||
+    belge.body?.textContent ||
+    "";
+
+  return {
+    adres,
+    baslik: fazlaBosluklariTemizle(baslik),
+    metin: fazlaBosluklariTemizle(anaIcerik)
+  };
+}
+
+async function aramaYap(sorgu) {
+  const temizSorgu = metniTemizle(sorgu).trim();
+
+  if (!temizSorgu) {
+    return [];
+  }
+
+  const sonuclar = [];
+
+  for (const adres of aranacakSayfalar) {
+    try {
+      const sayfa = await sayfaOku(adres);
+      const aranacakMetin = metniTemizle(`${sayfa.baslik} ${sayfa.metin}`);
+
+      if (aranacakMetin.includes(temizSorgu)) {
+        sonuclar.push({
+          adres: sayfa.adres,
+          baslik: sayfa.baslik,
+          ozet: kisaOzetOlustur(sayfa.metin, sorgu)
+        });
+      }
+    } catch (hata) {
+      console.warn(hata.message);
+    }
+  }
+
+  return sonuclar;
+}
+
+async function aramaSayfasiniHazirla() {
   const aramaKutusu = document.getElementById("arama-kutusu");
   const aramaDurumu = document.getElementById("arama-durumu");
   const aramaSonuclari = document.getElementById("arama-sonuclari");
@@ -96,7 +153,6 @@ function aramaSayfasiniHazirla() {
   const sorgu = parametreAl("q").trim();
 
   aramaKutusu.value = sorgu;
-
   aramaSonuclari.innerHTML = "";
 
   if (!sorgu) {
@@ -104,7 +160,11 @@ function aramaSayfasiniHazirla() {
     return;
   }
 
-  const sonuclar = aramaYap(sorgu);
+  aramaDurumu.textContent = "Sayfalar aranıyor lütfen bekleyin.";
+
+  const sonuclar = await aramaYap(sorgu);
+
+  aramaSonuclari.innerHTML = "";
 
   if (sonuclar.length === 0) {
     aramaDurumu.textContent = `"${sorgu}" araması için sonuç bulunamadı.`;
@@ -113,8 +173,8 @@ function aramaSayfasiniHazirla() {
 
   aramaDurumu.textContent = `"${sorgu}" araması için ${sonuclar.length} sonuç bulundu.`;
 
-  sonuclar.forEach((icerik) => {
-    aramaSonuclari.appendChild(sonucOlustur(icerik));
+  sonuclar.forEach((sonuc) => {
+    aramaSonuclari.appendChild(sonucOlustur(sonuc));
   });
 }
 
