@@ -90,8 +90,8 @@ async function sitemapOku() {
   }
 
   const xmlMetni = await cevap.text();
-  const ayrıştırıcı = new DOMParser();
-  const belge = ayrıştırıcı.parseFromString(xmlMetni, "application/xml");
+  const ayristirici = new DOMParser();
+  const belge = ayristirici.parseFromString(xmlMetni, "application/xml");
 
   const adresler = Array.from(belge.querySelectorAll("url loc"))
     .map((loc) => loc.textContent.trim())
@@ -112,8 +112,8 @@ async function sayfaOku(adres) {
   }
 
   const htmlMetni = await cevap.text();
-  const ayrıştırıcı = new DOMParser();
-  const belge = ayrıştırıcı.parseFromString(htmlMetni, "text/html");
+  const ayristirici = new DOMParser();
+  const belge = ayristirici.parseFromString(htmlMetni, "text/html");
 
   const baslik = sayfaBasliginiAl(belge, adres);
   const metin = anaMetniAl(belge);
@@ -123,33 +123,6 @@ async function sayfaOku(adres) {
     baslik: fazlaBosluklariTemizle(baslik),
     metin: fazlaBosluklariTemizle(metin)
   };
-}
-
-function kisaOzetOlustur(metin, sorgu) {
-  const temizMetin = fazlaBosluklariTemizle(metin);
-  const temizMetinArama = metniTemizle(temizMetin);
-  const temizSorgu = metniTemizle(sorgu);
-
-  const bulunanYer = temizMetinArama.indexOf(temizSorgu);
-
-  if (bulunanYer === -1) {
-    return temizMetin.slice(0, 160);
-  }
-
-  const baslangic = Math.max(0, bulunanYer - 55);
-  const bitis = Math.min(temizMetin.length, bulunanYer + temizSorgu.length + 95);
-
-  let ozet = temizMetin.slice(baslangic, bitis);
-
-  if (baslangic > 0) {
-    ozet = "..." + ozet;
-  }
-
-  if (bitis < temizMetin.length) {
-    ozet = ozet + "...";
-  }
-
-  return ozet;
 }
 
 function sonucOlustur(sonuc) {
@@ -163,12 +136,7 @@ function sonucOlustur(sonuc) {
   baglanti.textContent = sonuc.baslik;
 
   baslik.appendChild(baglanti);
-
-  const aciklama = document.createElement("p");
-  aciklama.textContent = sonuc.ozet;
-
   madde.appendChild(baslik);
-  madde.appendChild(aciklama);
 
   return madde;
 }
@@ -204,8 +172,7 @@ async function aramaYap(sorgu) {
 
       sonuclar.push({
         adres: sayfa.adres,
-        baslik: sayfa.baslik,
-        ozet: kisaOzetOlustur(sayfa.metin, sorgu)
+        baslik: sayfa.baslik
       });
     } catch (hata) {
       console.warn(hata.message);
@@ -234,7 +201,7 @@ async function aramaSayfasiniHazirla() {
     return;
   }
 
-  aramaDurumu.textContent = "Sitemap okunuyor ve sayfalar aranıyor lütfen bekleyin.";
+  aramaDurumu.textContent = "Sayfalar aranıyor lütfen bekleyin.";
 
   try {
     const sonuclar = await aramaYap(sorgu);
