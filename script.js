@@ -249,7 +249,26 @@ function baglantiKopyalamaHazirla() {
   });
 }
 
+function goatCounterHazirla() {
+  if (document.querySelector("script[data-goatcounter]")) {
+    return;
+  }
+
+  const goatCounterBetigi = document.createElement("script");
+
+  goatCounterBetigi.setAttribute(
+    "data-goatcounter",
+    "https://mehmetaykurt.goatcounter.com/count"
+  );
+
+  goatCounterBetigi.async = true;
+  goatCounterBetigi.src = "https://gc.zgo.at/count.js";
+
+  document.head.appendChild(goatCounterBetigi);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  goatCounterHazirla();
   aramaSayfasiniHazirla();
   baglantiKopyalamaHazirla();
 });
