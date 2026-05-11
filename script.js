@@ -197,7 +197,8 @@ async function aramaSayfasiniHazirla() {
   aramaSonuclari.innerHTML = "";
 
   if (!sorgu) {
-    aramaDurumu.textContent = "Henüz bir arama yapılmadı. Arama kutusuna bir ifade yazıp Ara düğmesine basabilirsiniz.";
+    aramaDurumu.textContent =
+      "Henüz bir arama yapılmadı. Arama kutusuna bir ifade yazıp Ara düğmesine basabilirsiniz.";
     return;
   }
 
@@ -219,7 +220,8 @@ async function aramaSayfasiniHazirla() {
       aramaSonuclari.appendChild(sonucOlustur(sonuc));
     });
   } catch (hata) {
-    aramaDurumu.textContent = "Arama yapılırken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.";
+    aramaDurumu.textContent =
+      "Arama yapılırken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.";
     console.error(hata);
   }
 }
@@ -292,44 +294,6 @@ async function goatCounterSayisiniAl(parametreler = "") {
   return veri.count || "0";
 }
 
-function ziyaretciSayaciAlaniOlustur() {
-  const footerIcerik = document.querySelector(".footer-icerik");
-
-  if (!footerIcerik || document.getElementById("ziyaretci-sayaci")) {
-    return false;
-  }
-
-  const sayacAlani = document.createElement("section");
-
-  sayacAlani.className = "ziyaretci-sayaci";
-  sayacAlani.id = "ziyaretci-sayaci";
-  sayacAlani.setAttribute("aria-labelledby", "ziyaretci-sayaci-basligi");
-
-  sayacAlani.innerHTML = `
-    <h2 id="ziyaretci-sayaci-basligi">Ziyaretçi Sayacı</h2>
-
-    <p>
-      Bugün:
-      <span id="ziyaretci-bugun" aria-live="polite">yükleniyor</span>
-    </p>
-
-    <p>
-      Toplam:
-      <span id="ziyaretci-toplam" aria-live="polite">yükleniyor</span>
-    </p>
-  `;
-
-  const ilkBaslik = footerIcerik.querySelector("h2");
-
-  if (ilkBaslik) {
-    footerIcerik.insertBefore(sayacAlani, ilkBaslik);
-  } else {
-    footerIcerik.prepend(sayacAlani);
-  }
-
-  return true;
-}
-
 async function ziyaretciSayaciniHazirla() {
   const bugunAlani = document.getElementById("ziyaretci-bugun");
   const toplamAlani = document.getElementById("ziyaretci-toplam");
@@ -358,6 +322,7 @@ async function ziyaretciSayaciniHazirla() {
 
 document.addEventListener("DOMContentLoaded", () => {
   goatCounterHazirla();
+  ziyaretciSayaciniHazirla();
   aramaSayfasiniHazirla();
   baglantiKopyalamaHazirla();
 });
