@@ -57,7 +57,7 @@ function sayfaBasliginiAl(belge, adres) {
 }
 
 function anaMetniAl(belge) {
-  const siirMetni = belge.querySelector(".siir-metni");
+  const siirMetni = belge.querySelector(".metin-icerigi");
 
   if (siirMetni) {
     return siirMetni.textContent || "";
@@ -127,7 +127,7 @@ async function sayfaOku(adres) {
 
 function sonucOlustur(sonuc) {
   const madde = document.createElement("article");
-  madde.className = "siir-ozeti";
+  madde.className = "icerik-karti";
 
   const baslik = document.createElement("h3");
   const baglanti = document.createElement("a");

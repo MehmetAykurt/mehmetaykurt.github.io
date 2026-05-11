@@ -200,9 +200,9 @@ select:focus {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
-.hos-geldiniz,
-.siir-ozeti,
-.son-eklenenler,
+.ana-tanitim,
+.icerik-karti,
+.bilgi-karti,
 .footer-icerik {
   background: var(--renk-kutu);
   border: 1px solid var(--renk-cizgi);
@@ -210,45 +210,45 @@ select:focus {
   padding: var(--bosluk-buyuk);
 }
 
-.hos-geldiniz p,
-.siir-ozeti p,
+.ana-tanitim p,
+.icerik-karti p,
 .footer-icerik p {
   margin-bottom: 0;
 }
 
-.siir-ozeti {
+.icerik-karti {
   margin-bottom: var(--bosluk-buyuk);
 }
 
-.siir-ozeti h3 {
+.icerik-karti h3 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   color: var(--renk-vurgu-koyu);
   line-height: 1.35;
 }
 
-.siir-metni {
+.metin-icerigi {
   max-width: 36rem;
   margin: 0 auto;
   font-size: 1.12rem;
   line-height: 1.9;
 }
 
-.siir-metni p {
+.metin-icerigi p {
   margin-top: 0;
   margin-bottom: 1.8rem;
 }
 
-.siir-metni p:last-child {
+.metin-icerigi p:last-child {
   margin-bottom: 0;
 }
 
-.son-eklenenler ol {
+.bilgi-karti ol {
   margin-bottom: 0;
   padding-left: 1.5rem;
 }
 
-.son-eklenenler li + li {
+.bilgi-karti li + li {
   margin-top: 0.45rem;
 }
 
@@ -319,20 +319,20 @@ select:focus {
     width: 100%;
   }
 
-  .hos-geldiniz,
-  .siir-ozeti,
-  .son-eklenenler,
+  .ana-tanitim,
+  .icerik-karti,
+  .bilgi-karti,
   .footer-icerik {
     padding: var(--bosluk-normal);
   }
 
-  .siir-metni {
+  .metin-icerigi {
     max-width: 100%;
     font-size: 1.05rem;
     line-height: 1.85;
   }
 
-  .siir-metni p {
+  .metin-icerigi p {
     margin-bottom: 1.5rem;
   }
 }
