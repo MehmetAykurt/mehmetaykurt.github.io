@@ -267,8 +267,100 @@ function goatCounterHazirla() {
   document.head.appendChild(goatCounterBetigi);
 }
 
+function bugununTarihiniAl() {
+  const simdi = new Date();
+  const yil = simdi.getFullYear();
+  const ay = String(simdi.getMonth() + 1).padStart(2, "0");
+  const gun = String(simdi.getDate()).padStart(2, "0");
+
+  return `${yil}-${ay}-${gun}`;
+}
+
+async function goatCounterSayisiniAl(parametreler = "") {
+  const adres = `https://mehmetaykurt.goatcounter.com/counter/TOTAL.json${parametreler}`;
+
+  const cevap = await fetch(adres, {
+    cache: "no-store"
+  });
+
+  if (!cevap.ok) {
+    throw new Error("Ziyaretçi sayacı okunamadı");
+  }
+
+  const veri = await cevap.json();
+
+  return veri.count || "0";
+}
+
+function ziyaretciSayaciAlaniOlustur() {
+  const footerIcerik = document.querySelector(".footer-icerik");
+
+  if (!footerIcerik || document.getElementById("ziyaretci-sayaci")) {
+    return false;
+  }
+
+  const sayacAlani = document.createElement("section");
+
+  sayacAlani.className = "ziyaretci-sayaci";
+  sayacAlani.id = "ziyaretci-sayaci";
+  sayacAlani.setAttribute("aria-labelledby", "ziyaretci-sayaci-basligi");
+
+  sayacAlani.innerHTML = `
+    <h2 id="ziyaretci-sayaci-basligi">Ziyaretçi Sayacı</h2>
+
+    <p>
+      Bugün:
+      <span id="ziyaretci-bugun" aria-live="polite">yükleniyor</span>
+    </p>
+
+    <p>
+      Toplam:
+      <span id="ziyaretci-toplam" aria-live="polite">yükleniyor</span>
+    </p>
+  `;
+
+  const ilkBaslik = footerIcerik.querySelector("h2");
+
+  if (ilkBaslik) {
+    footerIcerik.insertBefore(sayacAlani, ilkBaslik);
+  } else {
+    footerIcerik.prepend(sayacAlani);
+  }
+
+  return true;
+}
+
+async function ziyaretciSayaciniHazirla() {
+  const alanOlustu = ziyaretciSayaciAlaniOlustur();
+
+  if (!alanOlustu) {
+    return;
+  }
+
+  const bugunAlani = document.getElementById("ziyaretci-bugun");
+  const toplamAlani = document.getElementById("ziyaretci-toplam");
+
+  try {
+    const bugun = bugununTarihiniAl();
+
+    const [bugunSayisi, toplamSayisi] = await Promise.all([
+      goatCounterSayisiniAl(`?start=${encodeURIComponent(bugun)}`),
+      goatCounterSayisiniAl()
+    ]);
+
+    bugunAlani.textContent = bugunSayisi;
+    toplamAlani.textContent = toplamSayisi;
+  } catch (hata) {
+    console.warn(hata.message);
+
+    bugunAlani.textContent = "okunamadı";
+    toplamAlani.textContent = "okunamadı";
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   goatCounterHazirla();
+  ziyaretciSayaciniHazirla();
   aramaSayfasiniHazirla();
   baglantiKopyalamaHazirla();
 });
