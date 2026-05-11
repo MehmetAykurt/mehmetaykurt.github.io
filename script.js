@@ -331,14 +331,12 @@ function ziyaretciSayaciAlaniOlustur() {
 }
 
 async function ziyaretciSayaciniHazirla() {
-  const alanOlustu = ziyaretciSayaciAlaniOlustur();
-
-  if (!alanOlustu) {
-    return;
-  }
-
   const bugunAlani = document.getElementById("ziyaretci-bugun");
   const toplamAlani = document.getElementById("ziyaretci-toplam");
+
+  if (!bugunAlani || !toplamAlani) {
+    return;
+  }
 
   try {
     const bugun = bugununTarihiniAl();
@@ -360,7 +358,6 @@ async function ziyaretciSayaciniHazirla() {
 
 document.addEventListener("DOMContentLoaded", () => {
   goatCounterHazirla();
-  ziyaretciSayaciniHazirla();
   aramaSayfasiniHazirla();
   baglantiKopyalamaHazirla();
 });
