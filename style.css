@@ -249,9 +249,9 @@ select:focus {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
-.ana-tanitim,
+.metin,
 .icerik-karti,
-.bilgi-karti,
+.bolum,
 .footer-icerik {
   background: var(--renk-kutu);
   border: 1px solid var(--renk-cizgi);
@@ -259,7 +259,7 @@ select:focus {
   padding: var(--bosluk-buyuk);
 }
 
-.ana-tanitim p,
+.metin p,
 .icerik-karti p,
 .footer-icerik p {
   margin-bottom: 0;
@@ -292,12 +292,12 @@ select:focus {
   margin-bottom: 0;
 }
 
-.bilgi-karti ol {
+.bolum ol {
   margin-bottom: 0;
   padding-left: 1.5rem;
 }
 
-.bilgi-karti li + li {
+.bolum li + li {
   margin-top: 0.45rem;
 }
 
@@ -368,9 +368,9 @@ select:focus {
     width: 100%;
   }
 
-  .ana-tanitim,
+  .metin,
   .icerik-karti,
-  .bilgi-karti,
+  .bolum,
   .footer-icerik {
     padding: var(--bosluk-normal);
   }
