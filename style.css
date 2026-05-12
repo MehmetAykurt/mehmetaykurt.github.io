@@ -103,6 +103,16 @@ select:focus {
   margin-right: auto;
 }
 
+.onceki-sonraki ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.onceki-sonraki li + li {
+  margin-top: 0.45rem;
+}
+
 .site-baslik {
   padding: var(--bosluk-cok-buyuk) var(--bosluk-normal) var(--bosluk-buyuk);
   text-align: center;
@@ -125,6 +135,7 @@ select:focus {
 .ust-menu h2,
 .site-arama h2,
 .ana-icerik h2,
+.ana-icerik h3,
 .site-alt-bolum h2 {
   margin-top: 0;
   color: var(--renk-vurgu-koyu);
@@ -266,6 +277,14 @@ select:focus {
   margin-bottom: 0;
 }
 
+.icerik-listesi {
+  margin-bottom: var(--bosluk-cok-buyuk);
+}
+
+.icerik-listesi .icerik-karti:last-child {
+  margin-bottom: 0;
+}
+
 .icerik-karti {
   margin-bottom: var(--bosluk-buyuk);
 }
@@ -303,6 +322,21 @@ select:focus {
   margin-top: 0.45rem;
 }
 
+.ziyaretci-sayaci {
+  margin-bottom: var(--bosluk-buyuk);
+  padding-bottom: var(--bosluk-buyuk);
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+
+.ziyaretci-sayaci p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.ziyaretci-sayaci p:last-child {
+  margin-bottom: 0;
+}
+
 .site-alt-bolum {
   padding: var(--bosluk-buyuk) var(--bosluk-normal) var(--bosluk-cok-buyuk);
   color: var(--renk-ikincil-yazi);
@@ -310,6 +344,14 @@ select:focus {
 
 .footer-icerik {
   font-size: 1rem;
+}
+
+.telif-bildirimi h2 {
+  color: var(--renk-vurgu-koyu);
+}
+
+.telif-bildirimi p + p {
+  margin-top: 1rem;
 }
 
 .footer-icerik h2 {
