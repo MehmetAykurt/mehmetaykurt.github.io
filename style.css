@@ -293,7 +293,8 @@ select:focus {
   margin-bottom: 0;
 }
 
-.bolum ol {
+.bolum ol,
+.bolum ul {
   margin-bottom: 0;
   padding-left: 1.5rem;
 }
