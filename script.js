@@ -320,9 +320,65 @@ async function ziyaretciSayaciniHazirla() {
   }
 }
 
+function iletisimFormunuHazirla() {
+  const form = document.getElementById("iletisim-formu");
+  const durum = document.getElementById("iletisim-formu-durumu");
+
+  if (!form || !durum) {
+    return;
+  }
+
+  form.addEventListener("submit", async (olay) => {
+    olay.preventDefault();
+
+    const gonderDugmesi = form.querySelector("button[type='submit']");
+
+    durum.textContent = "Mesajınız gönderiliyor. Lütfen bekleyin.";
+
+    if (gonderDugmesi) {
+      gonderDugmesi.disabled = true;
+      gonderDugmesi.textContent = "Gönderiliyor";
+    }
+
+    try {
+      const formVerisi = new FormData(form);
+      const veri = Object.fromEntries(formVerisi.entries());
+
+      const cevap = await fetch(form.action, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(veri)
+      });
+
+      if (!cevap.ok) {
+        throw new Error("Form gönderilemedi");
+      }
+
+      form.reset();
+
+      durum.textContent =
+        "Mesajınız başarıyla gönderilmiştir. En kısa süre içerisinde değerlendirilip tarafınıza geri dönüş sağlanacaktır.";
+    } catch (hata) {
+      console.warn(hata.message);
+
+      durum.textContent =
+        "Mesajınız gönderilirken bir sorun oluştu. Lütfen daha sonra tekrar deneyin.";
+    } finally {
+      if (gonderDugmesi) {
+        gonderDugmesi.disabled = false;
+        gonderDugmesi.textContent = "Gönder";
+      }
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   goatCounterHazirla();
   ziyaretciSayaciniHazirla();
   aramaSayfasiniHazirla();
   baglantiKopyalamaHazirla();
+  iletisimFormunuHazirla();
 });

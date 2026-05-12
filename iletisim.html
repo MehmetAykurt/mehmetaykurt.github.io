@@ -67,7 +67,7 @@
   </p>
 
   <form class="iletisim-formu" action="https://formsubmit.co/m.aykurt38@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="Mehmet Aykurt Web Sitesi İletişim Formu">
+<form id="iletisim-formu" class="iletisim-formu" action="https://formsubmit.co/ajax/m.aykurt38@gmail.com" method="POST">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
 
@@ -90,12 +90,12 @@
 
     <p>
       <label for="eposta">E-posta adresiniz:</label>
-      <input
-        type="email"
-        id="eposta"
-        name="E-posta"
-        autocomplete="email"
-        required>
+<input
+  type="email"
+  id="eposta"
+  name="email"
+  autocomplete="email"
+  required>
     </p>
 
     <p>
@@ -117,8 +117,9 @@
     </p>
 
     <p>
-      <button type="submit">Gönder</button>
+  <button type="submit">Gönder</button>
     </p>
+<p id="iletisim-formu-durumu" role="status" aria-live="polite"></p>
   </form>
 
 </section>
@@ -177,6 +178,6 @@
     </footer>
 
   </div>
-  <script src="script.js?v=20260511-5" defer></script>
+  <script src="script.js?v=20260511-6" defer></script>
 </body>
 </html>
