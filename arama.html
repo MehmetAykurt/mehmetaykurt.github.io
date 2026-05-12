@@ -1,135 +1,147 @@
 <!doctype html>
 <html lang="tr">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Site İçi Arama | Mehmet Aykurt Kişisel Web Sitesi</title>
-
-  <meta name="description" content="Mehmet Aykurt kişisel web sitesi içinde arama yapma sayfası.">
-
-  <meta name="robots" content="noindex, follow">
-
-  <link rel="canonical" href="https://mehmetaykurt.com.tr/arama.html">
-
-  <link rel="icon" href="/assets/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-
-  <link rel="stylesheet" href="style.css?v=20260513-1">
-</head>
-
-<body>
-  <a href="#ana-icerik" class="atlama-baglantisi">Ana içeriğe geç</a>
-
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Site İçi Arama | Mehmet Aykurt Kişisel Web Sitesi
+  </title>
+  <meta content="Mehmet Aykurt kişisel web sitesi içinde arama yapma sayfası." name="description"/>
+  <meta content="noindex, follow" name="robots"/>
+  <link href="https://mehmetaykurt.com.tr/arama.html" rel="canonical"/>
+  <link href="/assets/favicon.ico" rel="icon" sizes="any"/>
+  <link href="/assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="style.css?v=20260513-2" rel="stylesheet"/>
+ </head>
+ <body>
+  <a class="atlama-baglantisi" href="#ana-icerik">
+   Ana içeriğe geç
+  </a>
   <div class="site-kapsayici">
-
-    <header class="site-baslik">
-      <p class="site-adi">Mehmet Aykurt Kişisel Web Sitesi</p>
-    </header>
-
-    <nav class="ust-menu" aria-labelledby="ana-menu-basligi">
-      <p id="ana-menu-basligi" class="bolum-etiketi">Ana Menü</p>
-
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="hakkimda.html">Hakkımda</a></li>
-        <li><a href="iletisim.html">İletişim</a></li>
-        <li><a href="siirler.html">Şiirler</a></li>
-        <li><a href="nvda-projeleri.html">NVDA Projeleri</a></li>
-      </ul>
-    </nav>
-
-    <section class="site-arama" aria-labelledby="site-arama-basligi">
-      <p id="site-arama-basligi" class="bolum-etiketi">Site İçi Arama</p>
-
-      <form action="arama.html" method="get" role="search">
-        <label for="arama-kutusu">Aranacak ifadeyi yazın:</label>
-
-        <input
-          type="search"
-          id="arama-kutusu"
-          name="q"
-          placeholder="Site içinde ara"
-          autocomplete="off">
-
-        <button type="submit">Ara</button>
-      </form>
-    </section>
-
-    <main id="ana-icerik" class="ana-icerik">
-      <div class="icerik-bolumu">
-
-        <section class="metin" aria-labelledby="arama-basligi">
-          <h1 id="arama-basligi">Arama Sonuçları</h1>
-        </section>
-
-        <section class="bolum" aria-labelledby="sonuclar-basligi">
-          <h2 id="sonuclar-basligi">Sonuçlar</h2>
-
-          <div id="arama-durumu" role="status" aria-live="polite">
-            Arama sonucu bekleniyor.
-          </div>
-
-          <div id="arama-sonuclari">
-          </div>
-        </section>
-
+   <header class="site-baslik">
+    <p class="site-adi">
+     Mehmet Aykurt Kişisel Web Sitesi
+    </p>
+   </header>
+   <nav aria-labelledby="ana-menu-basligi" class="ust-menu">
+    <p class="bolum-etiketi" id="ana-menu-basligi">
+     Ana Menü
+    </p>
+    <ul>
+     <li>
+      <a href="index.html">
+       Ana Sayfa
+      </a>
+     </li>
+     <li>
+      <a href="hakkimda.html">
+       Hakkımda
+      </a>
+     </li>
+     <li>
+      <a href="iletisim.html">
+       İletişim
+      </a>
+     </li>
+     <li>
+      <a href="siirler.html">
+       Şiirler
+      </a>
+     </li>
+     <li>
+      <a href="nvda-projeleri.html">
+       NVDA Projeleri
+      </a>
+     </li>
+    </ul>
+   </nav>
+   <div aria-labelledby="site-arama-basligi" class="site-arama">
+    <p class="bolum-etiketi" id="site-arama-basligi">
+     Site İçi Arama
+    </p>
+    <form action="arama.html" method="get" role="search">
+     <label for="arama-kutusu">
+      Aranacak ifadeyi yazın:
+     </label>
+     <input autocomplete="off" id="arama-kutusu" name="q" placeholder="Site içinde ara" type="search"/>
+     <button type="submit">
+      Ara
+     </button>
+    </form>
+   </div>
+   <main class="ana-icerik" id="ana-icerik">
+    <div class="icerik-bolumu">
+     <section aria-labelledby="arama-basligi" class="metin">
+      <h1 id="arama-basligi">
+       Arama Sonuçları
+      </h1>
+     </section>
+     <section aria-labelledby="sonuclar-basligi" class="bolum">
+      <h2 id="sonuclar-basligi">
+       Sonuçlar
+      </h2>
+      <div aria-live="polite" id="arama-durumu" role="status">
+       Arama sonucu bekleniyor.
       </div>
-    </main>
-
-    <footer class="site-alt-bolum">
-      <div class="footer-icerik">
-<section class="ziyaretci-sayaci" aria-labelledby="ziyaretci-sayaci-basligi">
-  <h2 id="ziyaretci-sayaci-basligi">Ziyaretçi Sayacı</h2>
-
-  <p>
-    Bugün:
-    <span id="ziyaretci-bugun" aria-live="polite">yükleniyor</span>
-  </p>
-
-  <p>
-    Toplam:
-    <span id="ziyaretci-toplam" aria-live="polite">yükleniyor</span>
-  </p>
-</section>
-        <section class="telif-bildirimi" aria-labelledby="telif-basligi">
-          <h2 id="telif-basligi">Hak ve Telif Bildirimi</h2>
-
-          <p>
-          Bu site, Mehmet Aykurt tarafından kişisel emek, kültürel paylaşım ve arşiv amacıyla hazırlanmıştır.
+      <div id="arama-sonuclari">
+      </div>
+     </section>
+    </div>
+   </main>
+   <footer class="site-alt-bolum">
+    <div class="footer-icerik">
+     <section aria-labelledby="ziyaretci-sayaci-basligi" class="ziyaretci-sayaci">
+      <h2 id="ziyaretci-sayaci-basligi">
+       Ziyaretçi Sayacı
+      </h2>
+      <p>
+       Bugün:
+       <span aria-live="polite" id="ziyaretci-bugun">
+        yükleniyor
+       </span>
+      </p>
+      <p>
+       Toplam:
+       <span aria-live="polite" id="ziyaretci-toplam">
+        yükleniyor
+       </span>
+      </p>
+     </section>
+     <section aria-labelledby="telif-basligi" class="telif-bildirimi">
+      <h2 id="telif-basligi">
+       Hak ve Telif Bildirimi
+      </h2>
+      <p>
+       Bu site, Mehmet Aykurt tarafından kişisel emek, kültürel paylaşım ve arşiv amacıyla hazırlanmıştır.
           Site herhangi bir ticari amaç taşımamaktadır.
-          </p>
-
-          <p>
-          Sitede yer alan şiirler, yazılar, kişisel metinler, erişilebilirlik çalışmalarına ilişkin belgeler
+      </p>
+      <p>
+       Sitede yer alan şiirler, yazılar, kişisel metinler, erişilebilirlik çalışmalarına ilişkin belgeler
           ve diğer özgün içerikler; 5846 sayılı Fikir ve Sanat Eserleri Kanunu kapsamında korunmaktadır.
-          </p>
-
-          <p>
-          Mevzuatta açıkça izin verilen hâller saklı kalmak kaydıyla; bu içeriklerin tamamı veya bir bölümü,
+      </p>
+      <p>
+       Mevzuatta açıkça izin verilen hâller saklı kalmak kaydıyla; bu içeriklerin tamamı veya bir bölümü,
           Mehmet Aykurt’un yazılı izni olmaksızın kopyalanamaz, çoğaltılamaz, yayımlanamaz, dağıtılamaz,
           değiştirilemez, umuma iletilemez ya da herhangi bir ortamda kullanılamaz.
-          </p>
-
-          <p>
-          Kaynak gösterilmesi, yazılı izin alınmadıkça kullanım hakkı doğurmaz.
-          </p>
-
-          <p>
-          Her türlü öneri, görüş ve düşünceleriniz için,
-            <a href="iletisim.html">İletişime geçebilirsiniz.</a>
-          </p>
-
-          <p>
-          &copy; 2026 Mehmet Aykurt. Tüm hakları saklıdır.
-          </p>
-        </section>
-      </div>
-    </footer>
-
+      </p>
+      <p>
+       Kaynak gösterilmesi, yazılı izin alınmadıkça kullanım hakkı doğurmaz.
+      </p>
+      <p>
+       Her türlü öneri, görüş ve düşünceleriniz için,
+       <a href="iletisim.html">
+        İletişime geçebilirsiniz.
+       </a>
+      </p>
+      <p>
+       © 2026 Mehmet Aykurt. Tüm hakları saklıdır.
+      </p>
+     </section>
+    </div>
+   </footer>
   </div>
-
-  <script src="script.js?v=20260513-1" defer></script>
-</body>
+  <script defer="" src="script.js?v=20260513-2">
+  </script>
+ </body>
 </html>

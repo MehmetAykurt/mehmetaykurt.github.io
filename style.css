@@ -257,8 +257,19 @@ select:focus {
 }
 
 .icerik-bolumu > section,
-.icerik-bolumu > article {
+.icerik-bolumu > article,
+.icerik-bolumu > nav {
   margin-bottom: var(--bosluk-cok-buyuk);
+}
+
+.proje-detay > section,
+.proje-detay > nav {
+  margin-bottom: var(--bosluk-cok-buyuk);
+}
+
+.proje-detay > section:last-child,
+.proje-detay > nav:last-child {
+  margin-bottom: 0;
 }
 
 .metin,
