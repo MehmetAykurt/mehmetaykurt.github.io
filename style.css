@@ -245,7 +245,8 @@ select:focus {
   padding: var(--bosluk-cok-buyuk) var(--bosluk-normal);
 }
 
-.icerik-bolumu > section {
+.icerik-bolumu > section,
+.icerik-bolumu > article {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
