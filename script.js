@@ -50,6 +50,7 @@ function sayfaBasliginiAl(belge, adres) {
   }
 
   return (
+    belge.querySelector("main h1")?.textContent.trim() ||
     belge.querySelector("main h2")?.textContent.trim() ||
     temizTitle ||
     adres

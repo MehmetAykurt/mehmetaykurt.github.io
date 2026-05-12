@@ -8,13 +8,22 @@
 
   <meta name="description" content="Mehmet Aykurt'un kişisel web sitesi. Şiirler, yazılar, iletişim bilgileri ve NVDA projelerine ilişkin içerikler.">
 
+  <meta property="og:title" content="Mehmet Aykurt Kişisel Web Sitesi">
+  <meta property="og:description" content="Mehmet Aykurt'un kişisel web sitesi. Şiirler, yazılar, iletişim bilgileri ve NVDA projelerine ilişkin içerikler.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mehmetaykurt.com.tr/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mehmet Aykurt Kişisel Web Sitesi">
+  <meta name="twitter:description" content="Mehmet Aykurt'un kişisel web sitesi. Şiirler, yazılar, iletişim bilgileri ve NVDA projelerine ilişkin içerikler.">
+
   <link rel="canonical" href="https://mehmetaykurt.com.tr/">
 
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="style.css?v=20260509-2">
+  <link rel="stylesheet" href="style.css?v=20260513-1">
 </head>
 
 <body>
@@ -23,11 +32,11 @@
   <div class="site-kapsayici">
 
     <header class="site-baslik">
-      <h1>Mehmet Aykurt Kişisel Web Sitesi</h1>
+      <p class="site-adi">Mehmet Aykurt Kişisel Web Sitesi</p>
     </header>
 
     <nav class="ust-menu" aria-labelledby="ana-menu-basligi">
-      <h2 id="ana-menu-basligi">Ana Menü</h2>
+      <p id="ana-menu-basligi" class="bolum-etiketi">Ana Menü</p>
 
       <ul>
         <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
@@ -39,7 +48,7 @@
     </nav>
 
     <section class="site-arama" aria-labelledby="site-arama-basligi">
-      <h2 id="site-arama-basligi">Site İçi Arama</h2>
+      <p id="site-arama-basligi" class="bolum-etiketi">Site İçi Arama</p>
 
       <form action="arama.html" method="get" role="search">
         <label for="arama-kutusu">Aranacak ifadeyi yazın:</label>
@@ -59,7 +68,7 @@
       <div class="icerik-bolumu">
 
         <section class="metin" aria-labelledby="metin-basligi">
-          <h2 id="metin-basligi">Hoş Geldiniz</h2>
+          <h1 id="metin-basligi">Hoş Geldiniz</h1>
 
           <p>
             Bu site; şiirlerin, kişisel çalışmaların ve erişilebilirlik alanındaki üretimlerin
@@ -166,6 +175,27 @@
       </div>
     </main>
 
+        <section class="bolum" aria-labelledby="paylasim-basligi">
+          <h2 id="paylasim-basligi">Bu Sayfayı Paylaş</h2>
+
+          <p>
+            Bu sayfanın bağlantısını kopyalayarak, WhatsApp, X,
+            Instagram, Facebook ve dilediğiniz diğer sosyal paylaşım
+            ortamlarında sevdiklerinizle paylaşabilirsiniz.
+          </p>
+
+          <p>
+            <button
+              type="button"
+              id="baglanti-kopyala"
+              data-baglanti="https://mehmetaykurt.com.tr/">
+              Bağlantıyı kopyala
+            </button>
+          </p>
+
+          <p id="kopyalama-durumu" role="status" aria-live="polite"></p>
+        </section>
+
     <footer class="site-alt-bolum">
       <div class="footer-icerik">
 <section class="ziyaretci-sayaci" aria-labelledby="ziyaretci-sayaci-basligi">
@@ -217,6 +247,6 @@
     </footer>
 
   </div>
-  <script src="script.js?v=20260511-5" defer></script>
+  <script src="script.js?v=20260513-1" defer></script>
 </body>
 </html>
