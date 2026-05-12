@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-  <link rel="stylesheet" href="style.css?v=20260509-2">
+  <link rel="stylesheet" href="style.css?v=20260509-3">
 </head>
 
 <body>
@@ -61,16 +61,68 @@
         <section class="ana-tanitim" aria-labelledby="iletisim-basligi">
           <h2 id="iletisim-basligi">İletişim</h2>
 
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSc1502ked2UY85q0rXj97pP9b4gH61HLS0hQOx897mAHAsaCQ/viewform?embedded=true"
-            title="Mehmet Aykurt iletişim formu"
-            width="100%"
-            height="900"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0">
-            Yükleniyor…
-          </iframe>
+  <p>
+    Siteyle ilgili görüş, öneri, düşünce ve iletişim taleplerinizi
+    aşağıdaki form aracılığıyla iletebilirsiniz.
+  </p>
+
+  <form class="iletisim-formu" action="https://formsubmit.co/m.aykurt38@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="Mehmet Aykurt Web Sitesi İletişim Formu">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <input
+      type="text"
+      name="_honey"
+      tabindex="-1"
+      autocomplete="off"
+      class="gizli-alan">
+
+    <p>
+      <label for="ad-soyad">Adınız Soyadınız:</label>
+      <input
+        type="text"
+        id="ad-soyad"
+        name="Ad Soyad"
+        autocomplete="name"
+        required>
+    </p>
+
+    <p>
+      <label for="eposta">E-posta adresiniz:</label>
+      <input
+        type="email"
+        id="eposta"
+        name="E-posta"
+        autocomplete="email"
+        required>
+    </p>
+
+    <p>
+      <label for="konu">Konu:</label>
+      <input
+        type="text"
+        id="konu"
+        name="Konu"
+        required>
+    </p>
+
+    <p>
+      <label for="mesaj">Mesajınız:</label>
+      <textarea
+        id="mesaj"
+        name="Mesaj"
+        rows="8"
+        required></textarea>
+    </p>
+
+    <p>
+      <button type="submit">Gönder</button>
+    </p>
+  </form>
+
+</section>
+
         </section>
 
       </div>

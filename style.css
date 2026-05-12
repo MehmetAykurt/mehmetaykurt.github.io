@@ -192,6 +192,55 @@ select:focus {
   background: var(--renk-vurgu-koyu);
 }
 
+.iletisim-formu {
+  margin-top: var(--bosluk-buyuk);
+}
+
+.iletisim-formu p {
+  margin-top: 0;
+  margin-bottom: var(--bosluk-normal);
+}
+
+.iletisim-formu label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+}
+
+.iletisim-formu input[type="text"],
+.iletisim-formu input[type="email"],
+.iletisim-formu textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--renk-cizgi);
+  border-radius: 0.5rem;
+  background: #ffffff;
+  color: var(--renk-yazi);
+}
+
+.iletisim-formu textarea {
+  resize: vertical;
+  min-height: 10rem;
+}
+
+.iletisim-formu button {
+  padding: 0.65rem 1.1rem;
+  border: 1px solid var(--renk-vurgu-koyu);
+  border-radius: 0.5rem;
+  background: var(--renk-vurgu);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.iletisim-formu button:hover,
+.iletisim-formu button:focus {
+  background: var(--renk-vurgu-koyu);
+}
+
+.gizli-alan {
+  display: none;
+}
+
 .ana-icerik {
   padding: var(--bosluk-cok-buyuk) var(--bosluk-normal);
 }
