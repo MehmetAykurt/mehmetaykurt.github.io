@@ -28,7 +28,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: Georgia, "Segoe UI", Arial, sans-serif !important;
 }
 
 html {
@@ -40,6 +39,7 @@ body {
   margin: 0;
   background: var(--renk-arka-plan);
   color: var(--renk-yazi);
+  font-family: Georgia, "Segoe UI", Arial, sans-serif;
   font-size: 18px;
   line-height: 1.75;
 }
@@ -48,7 +48,7 @@ input,
 button,
 textarea,
 select {
-  font-size: 18px;
+  font: inherit;
 }
 
 a {
@@ -207,11 +207,6 @@ select:focus {
   margin-top: var(--bosluk-buyuk);
 }
 
-.iletisim-formu p {
-  margin-top: 0;
-  margin-bottom: var(--bosluk-normal);
-}
-
 .iletisim-formu label {
   display: block;
   margin-bottom: 0.35rem;
@@ -339,15 +334,6 @@ select:focus {
   border-bottom: 1px solid var(--renk-cizgi);
 }
 
-.ziyaretci-sayaci p {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.ziyaretci-sayaci p:last-child {
-  margin-bottom: 0;
-}
-
 .site-alt-bolum {
   padding: var(--bosluk-buyuk) var(--bosluk-normal) var(--bosluk-cok-buyuk);
   color: var(--renk-ikincil-yazi);
@@ -357,19 +343,98 @@ select:focus {
   font-size: 1rem;
 }
 
-.telif-bildirimi h2 {
-  color: var(--renk-vurgu-koyu);
-}
-
-.telif-bildirimi p + p {
-  margin-top: 1rem;
-}
-
 .footer-icerik h2 {
   color: var(--renk-vurgu-koyu);
 }
 
 .footer-icerik p + p {
+  margin-top: 1rem;
+}
+
+
+
+/* Site-v1.6 semantik, form ve yardımcı alan düzenlemeleri */
+.site-adi a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-adi a:hover,
+.site-adi a:focus {
+  text-decoration: underline;
+}
+
+.bolum-etiketi {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.veri-bilgilendirme {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--renk-cizgi);
+  border-radius: 0.5rem;
+  background: #ffffff;
+}
+
+.form-satiri {
+  margin-top: 0;
+  margin-bottom: var(--bosluk-normal);
+}
+
+.buton-alani,
+.baglanti-alani {
+  margin-top: var(--bosluk-normal);
+}
+
+[role="status"] {
+  margin-top: var(--bosluk-normal);
+}
+
+.sayac-listesi,
+.bilgi-listesi {
+  margin: 0;
+}
+
+.sayac-listesi > div,
+.bilgi-listesi > div {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.sayac-listesi > div:last-child,
+.bilgi-listesi > div:last-child {
+  margin-bottom: 0;
+}
+
+.sayac-listesi dt,
+.bilgi-listesi dt {
+  font-weight: 700;
+}
+
+.sayac-listesi dd,
+.bilgi-listesi dd {
+  margin: 0;
+}
+
+.alt-baglantilar {
+  margin-bottom: var(--bosluk-buyuk);
+  padding-bottom: var(--bosluk-buyuk);
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+
+.alt-baglantilar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gizlilik-metni section + section {
+  margin-top: var(--bosluk-buyuk);
+}
+
+.metin p + p {
   margin-top: 1rem;
 }
 

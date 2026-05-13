@@ -12,7 +12,7 @@
   <link href="/assets/favicon.ico" rel="icon" sizes="any"/>
   <link href="/assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
   <link href="/assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-  <link href="style.css?v=20260513-2" rel="stylesheet"/>
+  <link href="style.css?v=20260513-4" rel="stylesheet"/>
  </head>
  <body>
   <a class="atlama-baglantisi" href="#ana-icerik">
@@ -20,14 +20,16 @@
   </a>
   <div class="site-kapsayici">
    <header class="site-baslik">
-    <p class="site-adi">
-     Mehmet Aykurt Kişisel Web Sitesi
-    </p>
+    <div class="site-adi">
+     <a href="index.html">
+      Mehmet Aykurt Kişisel Web Sitesi
+     </a>
+    </div>
    </header>
    <nav aria-labelledby="ana-menu-basligi" class="ust-menu">
-    <p class="bolum-etiketi" id="ana-menu-basligi">
+    <span class="bolum-etiketi" id="ana-menu-basligi">
      Ana Menü
-    </p>
+    </span>
     <ul>
      <li>
       <a href="index.html">
@@ -57,9 +59,9 @@
     </ul>
    </nav>
    <div aria-labelledby="site-arama-basligi" class="site-arama">
-    <p class="bolum-etiketi" id="site-arama-basligi">
+    <span class="bolum-etiketi" id="site-arama-basligi">
      Site İçi Arama
-    </p>
+    </span>
     <form action="arama.html" method="get" role="search">
      <label for="arama-kutusu">
       Aranacak ifadeyi yazın:
@@ -74,7 +76,7 @@
     <div class="icerik-bolumu">
      <section aria-labelledby="arama-basligi" class="metin">
       <h1 id="arama-basligi">
-       Arama Sonuçları
+       Site İçi Arama
       </h1>
      </section>
      <section aria-labelledby="sonuclar-basligi" class="bolum">
@@ -95,19 +97,38 @@
       <h2 id="ziyaretci-sayaci-basligi">
        Ziyaretçi Sayacı
       </h2>
-      <p>
-       Bugün:
-       <span aria-live="polite" id="ziyaretci-bugun">
-        yükleniyor
-       </span>
-      </p>
-      <p>
-       Toplam:
-       <span aria-live="polite" id="ziyaretci-toplam">
-        yükleniyor
-       </span>
-      </p>
+      <dl class="sayac-listesi">
+       <div>
+        <dt>
+         Bugün
+        </dt>
+        <dd>
+         <span aria-live="polite" id="ziyaretci-bugun">
+          yükleniyor
+         </span>
+        </dd>
+       </div>
+       <div>
+        <dt>
+         Toplam
+        </dt>
+        <dd>
+         <span aria-live="polite" id="ziyaretci-toplam">
+          yükleniyor
+         </span>
+        </dd>
+       </div>
+      </dl>
      </section>
+     <nav aria-label="Alt bağlantılar" class="alt-baglantilar">
+      <ul>
+       <li>
+        <a href="gizlilik.html">
+         Gizlilik, Veri Kullanımı ve Telif Beyanı
+        </a>
+       </li>
+      </ul>
+     </nav>
      <section aria-labelledby="telif-basligi" class="telif-bildirimi">
       <h2 id="telif-basligi">
        Hak ve Telif Bildirimi
@@ -141,7 +162,7 @@
     </div>
    </footer>
   </div>
-  <script defer="" src="script.js?v=20260513-2">
+  <script defer="" src="script.js?v=20260513-4">
   </script>
  </body>
 </html>
