@@ -353,7 +353,7 @@ select:focus {
 
 
 
-/* Site-v1.6 semantik, form ve yardımcı alan düzenlemeleri */
+/* Site-v1.7 şiir künyesi, edebî değerlendirme ve yardımcı alan düzenlemeleri */
 .site-adi a {
   color: inherit;
   text-decoration: none;
@@ -436,6 +436,45 @@ select:focus {
 
 .metin p + p {
   margin-top: 1rem;
+}
+
+
+/* Şiir sayfaları: künye, metin ve edebî değerlendirme düzeni */
+.siir-kunyesi-bolumu,
+.siir-metni-bolumu,
+.edebi-degerlendirme-bolumu {
+  margin-top: var(--bosluk-buyuk);
+}
+
+.siir-kunyesi-bolumu {
+  padding-bottom: var(--bosluk-buyuk);
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+
+.siir-kunyesi {
+  max-width: 42rem;
+}
+
+.siir-metni-bolumu {
+  padding-bottom: var(--bosluk-buyuk);
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+
+.siir-metni-bolumu h2,
+.edebi-degerlendirme-bolumu h2 {
+  margin-bottom: var(--bosluk-normal);
+}
+
+.edebi-alt-bolum + .edebi-alt-bolum {
+  margin-top: var(--bosluk-buyuk);
+}
+
+.edebi-alt-bolum h3 {
+  margin-bottom: 0.5rem;
+}
+
+.edebi-alt-bolum p {
+  margin-top: 0;
 }
 
 @media (min-width: 700px) {
