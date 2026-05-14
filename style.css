@@ -327,6 +327,27 @@ select:focus {
   margin-top: 0.45rem;
 }
 
+
+.sosyal-medya {
+  margin-bottom: var(--bosluk-buyuk);
+  padding-bottom: var(--bosluk-buyuk);
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+
+.sosyal-medya ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sosyal-medya li + li {
+  margin-top: 0.45rem;
+}
+
+.sosyal-medya span[aria-disabled="true"] {
+  color: var(--renk-ikincil-yazi);
+}
+
 .ziyaretci-sayaci {
   margin-bottom: var(--bosluk-buyuk);
   padding-bottom: var(--bosluk-buyuk);
