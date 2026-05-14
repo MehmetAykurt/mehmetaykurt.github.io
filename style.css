@@ -1,6 +1,7 @@
 /*
   Mehmet Aykurt Kişisel Web Sitesi
   Genel stil dosyası
+  Sürüm: Site-v1.10
   Amaç: Tek sütunlu, sade, zarif, okunabilir ve erişilebilir görünüm.
 */
 
@@ -257,13 +258,11 @@ select:focus {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
-.proje-detay > section,
-.proje-detay > nav {
+.proje-detay > section {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
-.proje-detay > section:last-child,
-.proje-detay > nav:last-child {
+.proje-detay > section:last-child {
   margin-bottom: 0;
 }
 
