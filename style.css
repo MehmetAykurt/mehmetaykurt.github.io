@@ -1,8 +1,8 @@
 /*
   Mehmet Aykurt Kişisel Web Sitesi
   Genel stil dosyası
-  Sürüm: Site-v1.22
-  Amaç: Tek sütunlu, sade, zarif, okunabilir ve erişilebilir görünüm.
+  Sürüm: Site-v1.23
+  Amaç: Tek sütunlu, sade, zarif ve okunabilir görünüm.
 */
 
 :root {
@@ -259,13 +259,6 @@ select:focus {
   margin-bottom: var(--bosluk-cok-buyuk);
 }
 
-.erisilebilirlik-detay > section {
-  margin-bottom: var(--bosluk-cok-buyuk);
-}
-
-.erisilebilirlik-detay > section:last-child {
-  margin-bottom: 0;
-}
 
 .metin,
 .icerik-karti,

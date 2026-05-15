@@ -82,7 +82,7 @@ function anaMetniAl(belge) {
 }
 
 async function sitemapOku() {
-  const cevap = await fetch("sitemap.xml?v=20260515-6", {
+  const cevap = await fetch("sitemap.xml?v=20260515-7", {
     cache: "no-store"
   });
 
