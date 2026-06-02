@@ -82,7 +82,7 @@ return kopya.textContent || "";
 }
 
 async function sitemapOku() {
-const cevap = await fetch("sitemap.xml?v=20260516-2", {
+const cevap = await fetch("sitemap.xml?v=20260602-1", {
 cache: "no-store"
 });
 
@@ -143,7 +143,7 @@ return madde;
 }
 
 function listeSayfasiMi(adres) {
-return adres === "index.html" || adres === "siirler.html";
+return adres === "index.html" || adres === "siirler.html" || adres === "videolar.html" || adres === "erisilebilirlik.html";
 }
 
 async function aramaYap(sorgu) {
