@@ -1,0 +1,92 @@
+---
+import ShareSection from "../components/ShareSection.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { getCollection } from "astro:content";
+
+const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sort(
+  (birinci, ikinci) => birinci.data.sira - ikinci.data.sira
+);
+
+const oneCikanIcerikler = [
+  {
+    baslik: "Gönül Dediğin",
+    adres: "/videolar/gonul-dedigin.html",
+    baglantiMetni: "Dinle"
+  },
+  ...siirler
+    .filter((siir) => siir.data.oneCikan)
+    .map((siir) => ({
+      baslik: siir.data.baslik,
+      adres: `/siirler/${siir.id}.html`,
+      baglantiMetni: "Devamını oku",
+      dizeler: siir.data.siirMetni
+        .split(/\n\s*\n/)[0]
+        .split("\n")
+        .map((dize) => dize.trim())
+        .filter(Boolean)
+    }))
+];
+
+const sonEklenenIcerikler = [
+  { baslik: "Gönül Dediğin", adres: "/videolar/gonul-dedigin.html" },
+  ...[...siirler]
+    .sort((birinci, ikinci) => ikinci.data.sira - birinci.data.sira)
+    .slice(0, 9)
+    .map((siir) => ({
+      baslik: siir.data.baslik,
+      adres: `/siirler/${siir.id}.html`
+    }))
+];
+---
+
+<SiteLayout
+  aktifMenu="ana-sayfa"
+  aciklama="Mehmet Aykurt’un şiir, edebiyat ve müzik çalışmalarını bir araya getiren resmî web sitesi."
+  baslik="Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/"
+>
+  <section aria-labelledby="metin-basligi" class="metin">
+    <h1 id="metin-basligi">Hoş Geldiniz</h1>
+    <p>
+      Mehmet Aykurt’un şiir, edebiyat ve müzik çalışmalarını bir araya getiren
+      resmî web sitesine hoş geldiniz.
+    </p>
+  </section>
+
+  <section aria-labelledby="icerik-listesi-basligi" class="icerik-listesi">
+    <h2 id="icerik-listesi-basligi">Öne Çıkan İçerikler</h2>
+    {
+      oneCikanIcerikler.map((icerik) => (
+        <article class="icerik-karti">
+          <h3>{icerik.baslik}</h3>
+          {icerik.dizeler && (
+            <p>
+              {icerik.dizeler.map((dize, sira) => (
+                <>
+                  {dize}
+                  {sira < icerik.dizeler.length - 1 && <br />}
+                </>
+              ))}
+            </p>
+          )}
+          <div class="baglanti-alani">
+            <a href={icerik.adres}>{icerik.baglantiMetni}</a>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <section aria-labelledby="son-eklenenler-basligi" class="bolum">
+    <h2 id="son-eklenenler-basligi">Son Eklenen İçerikler</h2>
+    <ol>
+      {
+        sonEklenenIcerikler.map((icerik) => (
+          <li><a href={icerik.adres}>{icerik.baslik}</a></li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <ShareSection adres="https://mehmetaykurt.com.tr/" />
+</SiteLayout>

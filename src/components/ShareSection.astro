@@ -1,0 +1,26 @@
+---
+interface Props {
+  baslik?: string;
+  aciklama?: string;
+  adres: string;
+  dugmeMetni?: string;
+}
+
+const {
+  baslik = "Sayfayı Paylaş",
+  aciklama = "Bu sayfanın bağlantısını kopyalayarak, WhatsApp, X, Instagram, Facebook ve dilediğiniz diğer sosyal paylaşım ortamlarında sevdiklerinizle paylaşabilirsiniz.",
+  adres,
+  dugmeMetni = "Bağlantıyı kopyala"
+} = Astro.props;
+---
+
+<section aria-labelledby="paylasim-basligi" class="bolum">
+  <h2 id="paylasim-basligi">{baslik}</h2>
+  <p>{aciklama}</p>
+  <div class="buton-alani">
+    <button data-baglanti={adres} id="baglanti-kopyala" type="button">
+      {dugmeMetni}
+    </button>
+  </div>
+  <div aria-live="polite" id="kopyalama-durumu" role="status"></div>
+</section>

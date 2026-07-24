@@ -1,0 +1,28 @@
+---
+interface Props {
+  sayfaKimligi: string;
+  sayfaBasligi: string;
+  sayfaAdresi: string;
+  aciklama: string;
+}
+
+const { sayfaKimligi, sayfaBasligi, sayfaAdresi, aciklama } = Astro.props;
+---
+
+<section aria-labelledby="yorumlar-basligi" class="bolum">
+  <h2 id="yorumlar-basligi">Yorumlar</h2>
+  <p>{aciklama}</p>
+  <div
+    data-app-id="8177b620-b092-4cbe-b334-e5ef038302cc"
+    data-host="https://cusdis.com"
+    data-page-id={sayfaKimligi}
+    data-page-title={sayfaBasligi}
+    data-page-url={sayfaAdresi}
+    id="cusdis_thread"
+  >
+  </div>
+</section>
+
+<script is:inline defer src="https://cusdis.com/js/widget/lang/tr.js"></script>
+<script is:inline async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+

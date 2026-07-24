@@ -1,0 +1,32 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+  aciklama="Mehmet Aykurt Resmî Web Sitesi için sayfa bulunamadı uyarısı."
+  aramaMotorlari="noindex, follow"
+  baslik="Sayfa Bulunamadı | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/404.html"
+>
+  <section aria-labelledby="hata-basligi" class="metin">
+    <h1 id="hata-basligi">Sayfa Bulunamadı</h1>
+    <p>
+      Aradığınız sayfa bulunamadı. Bağlantı değişmiş, kaldırılmış ya da adres
+      yanlış yazılmış olabilir.
+    </p>
+    <p>
+      Dilerseniz ana sayfaya dönebilir, şiirler bölümünü ziyaret edebilir ya da
+      site içi arama alanını kullanarak aradığınız içeriğe ulaşmayı
+      deneyebilirsiniz.
+    </p>
+  </section>
+  <section aria-labelledby="yonlendirme-basligi" class="bolum">
+    <h2 id="yonlendirme-basligi">Yönlendirme</h2>
+    <ol>
+      <li><a href="/index.html">Ana Sayfa</a></li>
+      <li><a href="/siirler.html">Şiirler</a></li>
+      <li><a href="/hakkimda.html">Hakkımda</a></li>
+      <li><a href="/iletisim.html">İletişim</a></li>
+    </ol>
+  </section>
+</SiteLayout>

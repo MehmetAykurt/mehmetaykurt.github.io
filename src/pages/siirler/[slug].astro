@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import CommentsSection from "../../components/CommentsSection.astro";
+import PoemArticle from "../../components/PoemArticle.astro";
+import ShareSection from "../../components/ShareSection.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+interface GezintiOgesi {
+  id: string;
+  baslik: string;
+}
+
+interface Props {
+  siir: CollectionEntry<"siirler">;
+  onceki?: GezintiOgesi;
+  sonraki?: GezintiOgesi;
+}
+
+export async function getStaticPaths() {
+  const siirler = (
+    await getCollection("siirler", ({ data }) => !data.taslak)
+  ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
+  return siirler.map((siir, sira) => ({
+    params: { slug: siir.id },
+    props: {
+      siir,
+      onceki:
+        sira > 0
+          ? {
+              id: siirler[sira - 1].id,
+              baslik: siirler[sira - 1].data.baslik
+            }
+          : undefined,
+      sonraki:
+        sira < siirler.length - 1
+          ? {
+              id: siirler[sira + 1].id,
+              baslik: siirler[sira + 1].data.baslik
+            }
+          : undefined
+    }
+  }));
+}
+
+const { siir, onceki, sonraki } = Astro.props;
+const canonicalYolu = `/siirler/${siir.id}.html`;
+const tamAdres = `https://mehmetaykurt.com.tr${canonicalYolu}`;
+---
+
+<SiteLayout
+  aktifMenu="siirler"
+  aktifMenuTuru="location"
+  aciklama={siir.data.aciklama}
+  baslik={`${siir.data.baslik} | Mehmet Aykurt Resmî Web Sitesi`}
+  canonicalYolu={canonicalYolu}
+>
+  <PoemArticle onceki={onceki} siir={siir} sonraki={sonraki} />
+
+  <ShareSection adres={tamAdres} dugmeMetni="Şiir bağlantısını kopyala" />
+
+  <CommentsSection
+    aciklama="Bu şiir hakkındaki görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
+    sayfaAdresi={tamAdres}
+    sayfaBasligi={siir.data.baslik}
+    sayfaKimligi={`siirler/${siir.id}`}
+  />
+</SiteLayout>
+

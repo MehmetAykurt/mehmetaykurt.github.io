@@ -1,0 +1,68 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteSearch from "../components/SiteSearch.astro";
+import "../../style.css";
+
+interface Props {
+  baslik: string;
+  aciklama: string;
+  canonicalYolu: string;
+  aktifMenu?: "ana-sayfa" | "hakkimda" | "iletisim" | "siirler" | "videolar";
+  aktifMenuTuru?: "page" | "location";
+  aramaMotorlari?: string;
+}
+
+const {
+  baslik,
+  aciklama,
+  canonicalYolu,
+  aktifMenu,
+  aktifMenuTuru = "page",
+  aramaMotorlari
+} = Astro.props;
+const siteAdresi = Astro.site ?? new URL("https://mehmetaykurt.com.tr");
+const canonicalAdresi = new URL(canonicalYolu, siteAdresi).toString();
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{baslik}</title>
+    <meta name="description" content={aciklama} />
+    {aramaMotorlari && <meta name="robots" content={aramaMotorlari} />}
+    <meta property="og:title" content={baslik} />
+    <meta property="og:description" content={aciklama} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalAdresi} />
+    <link rel="canonical" href={canonicalAdresi} />
+    <link href="/assets/favicon.ico" rel="icon" sizes="any" />
+    <link
+      href="/assets/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="/assets/apple-touch-icon.png"
+      rel="apple-touch-icon"
+      sizes="180x180"
+    />
+  </head>
+  <body>
+    <a class="atlama-baglantisi" href="#ana-icerik">Ana içeriğe geç</a>
+    <div class="site-kapsayici">
+      <SiteHeader aktifMenu={aktifMenu} aktifMenuTuru={aktifMenuTuru} />
+      <SiteSearch />
+      <main class="ana-icerik" id="ana-icerik">
+        <div class="icerik-bolumu">
+          <slot />
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+    <script is:inline defer src="/script.js?v=20260724-1"></script>
+  </body>
+</html>

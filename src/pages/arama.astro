@@ -1,0 +1,21 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+  aciklama="Mehmet Aykurt kişisel web sitesi içinde arama yapma sayfası."
+  aramaMotorlari="noindex, follow"
+  baslik="Site İçi Arama | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/arama.html"
+>
+  <section aria-labelledby="arama-basligi" class="metin">
+    <h1 id="arama-basligi">Site İçi Arama</h1>
+  </section>
+  <section aria-labelledby="sonuclar-basligi" class="bolum">
+    <h2 id="sonuclar-basligi">Sonuçlar</h2>
+    <div aria-live="polite" id="arama-durumu" role="status">
+      Arama sonucu bekleniyor.
+    </div>
+    <div id="arama-sonuclari"></div>
+  </section>
+</SiteLayout>
