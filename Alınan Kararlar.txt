@@ -345,3 +345,29 @@ içerikleri, 10 şiirin tüm verileri, yerel bağlantılar, sitemap, robots.txt,
 Engelleyici hata bulunmadı. astro-gecis dalındaki çalışma GitHub'a gönderilmeye
 hazırdır. Canlı yayımlama için bu değişikliklerin daha sonra main dalına
 alınması ve GitHub Pages kaynağının GitHub Actions olarak seçilmesi gerekir.
+
+ASTRO SONRASI TEMİZLİK KARARI
+
+24 Temmuz 2026 tarihinde Astro sürümünün canlıda başarıyla çalıştığı; arama,
+şiir sayfaları, yorum alanı, sayaç ve otomatik GitHub Pages yayımlamasının
+doğru olduğu doğrulandı.
+
+Mehmet Aykurt'un isteği üzerine depoda yalnızca güncel Astro sistemi
+bırakılacaktır. Bu nedenle:
+
+- Astro tarafından yeniden üretilen eski kök HTML sayfaları kaldırıldı.
+- Site içinde artık kullanılmayan erişilebilirlik sayfaları ve klasörü
+  kaldırıldı.
+- public klasöründe güncel kopyaları bulunan eski CNAME, robots.txt,
+  script.js ve simge dosyaları kaldırıldı.
+- Elle hazırlanmış eski sitemap.xml kaldırıldı; güncel sitemap Astro
+  tarafından otomatik üretilmeye devam edecektir.
+- Eski düz metin şiir şablonu kaldırıldı; güncel YAML şiir şablonu
+  src/templates klasöründe korunmaktadır.
+- Ana stil dosyası Astro yapısına uygun olarak src/styles/site.css konumuna
+  taşındı.
+- Alınan Kararlar.txt, güncel Astro kaynakları, public dosyaları, GitHub Pages
+  iş akışı ve proje yapılandırma dosyaları korunmaktadır.
+
+Silinen dosyalar Git geçmişinde bulunduğu için ihtiyaç hâlinde geri
+alınabilir.
