@@ -392,3 +392,18 @@ yenilendi.
   gösterilmektedir.
 - Yeni bir şiir eklendiğinde arama dizini için ayrıca elle işlem yapılması
   gerekmemektedir.
+
+OTOMATİK ASTRO KOD DENETİMİ
+
+24 Temmuz 2026 tarihinde, sayfa ve bileşenlerdeki tür hatalarının yayımdan
+önce yakalanması için Astro kod denetimi projeye eklendi.
+
+- @astrojs/check ve uyumlu TypeScript sürümü geliştirme bağımlılığı olarak
+  eklendi.
+- "pnpm run check" komutu tüm Astro ve TypeScript kaynaklarını denetlemektedir.
+- Derleme komutu önce kod denetimini, ardından site üretimini çalıştırmaktadır.
+- Kod denetimi hata verirse derleme duracağı için GitHub Pages bozuk bir
+  sürümü yayımlamayacaktır.
+- İlk denetimde ana sayfadaki öne çıkan içeriklerin isteğe bağlı şiir dizesi
+  alanında bulunan tür belirsizlikleri giderildi.
+- Son denetim 23 dosyada 0 hata, 0 uyarı ve 0 bilgi notuyla tamamlandı.

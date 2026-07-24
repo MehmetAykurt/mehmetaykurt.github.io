@@ -3,11 +3,18 @@ import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { getCollection } from "astro:content";
 
+interface OneCikanIcerik {
+  baslik: string;
+  adres: string;
+  baglantiMetni: string;
+  dizeler?: string[];
+}
+
 const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sort(
   (birinci, ikinci) => birinci.data.sira - ikinci.data.sira
 );
 
-const oneCikanIcerikler = [
+const oneCikanIcerikler: OneCikanIcerik[] = [
   {
     baslik: "Gönül Dediğin",
     adres: "/videolar/gonul-dedigin.html",
@@ -61,10 +68,10 @@ const sonEklenenIcerikler = [
           <h3>{icerik.baslik}</h3>
           {icerik.dizeler && (
             <p>
-              {icerik.dizeler.map((dize, sira) => (
+              {icerik.dizeler.map((dize, sira, dizeler) => (
                 <>
                   {dize}
-                  {sira < icerik.dizeler.length - 1 && <br />}
+                  {sira < dizeler.length - 1 && <br />}
                 </>
               ))}
             </p>
