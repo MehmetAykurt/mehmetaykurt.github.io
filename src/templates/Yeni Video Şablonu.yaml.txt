@@ -1,0 +1,11 @@
+baslik: Videonun Başlığı
+# Açıklama başlıktan otomatik üretilir. İstenirse en fazla 155 karakterlik
+# özel bir "aciklama" alanı eklenebilir.
+icerikTuru: Video kaydı
+kaynak: YouTube
+sanatci: Mehmet Aykurt
+youtubeAdresi: https://www.youtube.com/watch?v=VIDEO_KIMLIGI
+sira: 2
+oneCikan: false
+# true: sitede gösterme; false: GitHub'a gönderildiğinde yayımla
+taslak: true

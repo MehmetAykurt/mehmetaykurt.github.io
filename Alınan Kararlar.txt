@@ -459,3 +459,26 @@ için planlı yayın sistemi eklendi.
   otomatik bakım kaydı main dalına gönderilecektir.
 - Otomatik bakım kaydından sonra yerel bilgisayar GitHub'ın gerisinde görünürse
   yeni çalışmaya başlamadan önce GitHub Desktop'ta Pull origin yapılacaktır.
+
+OTOMATİK VİDEO İÇERİK SİSTEMİ
+
+24 Temmuz 2026 tarihinde yeni videoların tek bir içerik dosyasıyla
+eklenebilmesi için video sistemi yenilendi.
+
+- src/templates klasörüne Yeni Video Şablonu.yaml.txt dosyası eklendi.
+- Her video, src/content/videolar klasöründeki ayrı bir YAML dosyasında
+  tutulacaktır.
+- Kullanıcının yalnızca tam YouTube bağlantısını yazması yeterlidir; video
+  kimliği, iframe adresi ve YouTube'da açma bağlantısı otomatik oluşturulacaktır.
+- Normal YouTube, kısa youtu.be, Shorts, canlı yayın ve gömülü video bağlantı
+  biçimleri desteklenecektir.
+- Video sayfası, video listesi, ana sayfa kayıtları, site içi arama, sitemap,
+  önceki-sonraki gezinmesi, paylaşım ve yorum bilgileri otomatik üretilecektir.
+- Video açıklaması yazılmazsa başlıktan en fazla 155 karakterlik otomatik
+  açıklama oluşturulacaktır.
+- "taslak: true" videoyu gizli tutacak; "taslak: false" yapılan video GitHub'a
+  gönderildiğinde yayımlanacaktır.
+- Videolar için tarihli planlı yayın kullanılmayacaktır; video yayını Mehmet
+  Aykurt'un elle gönderim yaptığı anda gerçekleşecektir.
+- Mevcut Gönül Dediğin videosu yeni içerik sistemine taşınırken sayfa adresi ve
+  yorum kimliği korunmuştur.

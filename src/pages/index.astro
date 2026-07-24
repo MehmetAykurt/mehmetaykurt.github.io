@@ -15,12 +15,18 @@ const siirler = (
   await getCollection("siirler", ({ data }) => siirYayindaMi(data))
 ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 
+const videolar = (
+  await getCollection("videolar", ({ data }) => !data.taslak)
+).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
 const oneCikanIcerikler: OneCikanIcerik[] = [
-  {
-    baslik: "Gönül Dediğin",
-    adres: "/videolar/gonul-dedigin.html",
-    baglantiMetni: "Dinle"
-  },
+  ...videolar
+    .filter((video) => video.data.oneCikan)
+    .map((video) => ({
+      baslik: video.data.baslik,
+      adres: `/videolar/${video.id}.html`,
+      baglantiMetni: "İzle"
+    })),
   ...siirler
     .filter((siir) => siir.data.oneCikan)
     .map((siir) => ({
@@ -36,15 +42,20 @@ const oneCikanIcerikler: OneCikanIcerik[] = [
 ];
 
 const sonEklenenIcerikler = [
-  { baslik: "Gönül Dediğin", adres: "/videolar/gonul-dedigin.html" },
+  ...[...videolar]
+    .sort((birinci, ikinci) => ikinci.data.sira - birinci.data.sira)
+    .slice(0, 1)
+    .map((video) => ({
+      baslik: video.data.baslik,
+      adres: `/videolar/${video.id}.html`
+    })),
   ...[...siirler]
     .sort((birinci, ikinci) => ikinci.data.sira - birinci.data.sira)
-    .slice(0, 9)
     .map((siir) => ({
       baslik: siir.data.baslik,
       adres: `/siirler/${siir.id}.html`
     }))
-];
+].slice(0, 10);
 ---
 
 <SiteLayout

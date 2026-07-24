@@ -8,17 +8,23 @@ const sabitSayfalar = [
   "iletisim.html",
   "siirler.html",
   "videolar.html",
-  "videolar/gonul-dedigin.html",
   "gizlilik.html"
 ];
 
 export const GET: APIRoute = async ({ site }) => {
   const siteAdresi = site ?? new URL("https://mehmetaykurt.com.tr");
+  const videolar = await getCollection(
+    "videolar",
+    ({ data }) => !data.taslak
+  );
   const siirler = await getCollection("siirler", ({ data }) =>
     siirYayindaMi(data)
   );
   const yollar = [
     ...sabitSayfalar,
+    ...videolar
+      .sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira)
+      .map((video) => `videolar/${video.id}.html`),
     ...siirler
       .sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira)
       .map((siir) => `siirler/${siir.id}.html`)

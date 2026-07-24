@@ -1,6 +1,9 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
-import { siirAciklamasiOlustur } from "../utils/aciklama";
+import {
+  siirAciklamasiOlustur,
+  videoAciklamasiOlustur
+} from "../utils/aciklama";
 import { siirYayindaMi } from "../utils/yayin";
 
 interface AramaKaydi {
@@ -65,16 +68,6 @@ const sabitSayfalar: AramaKaydi[] = [
     sira: 5
   },
   {
-    baslik: "Gönül Dediğin",
-    adres: "/videolar/gonul-dedigin.html",
-    tur: "Video",
-    aciklama:
-      "Mehmet Aykurt’un Gönül Dediğin adlı eserinin müzik videosu.",
-    metin:
-      "Gönül Dediğin, müzik, video, dinle, Mehmet Aykurt YouTube kanalı.",
-    sira: 6
-  },
-  {
     baslik: "Gizlilik, Veri Kullanımı ve Telif Beyanı",
     adres: "/gizlilik.html",
     tur: "Sayfa",
@@ -87,9 +80,30 @@ const sabitSayfalar: AramaKaydi[] = [
 ];
 
 export const GET: APIRoute = async () => {
+  const videolar = (
+    await getCollection("videolar", ({ data }) => !data.taslak)
+  ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
   const siirler = (
     await getCollection("siirler", ({ data }) => siirYayindaMi(data))
   ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
+  const videoKayitlari: AramaKaydi[] = videolar.map((video) => ({
+    baslik: video.data.baslik,
+    adres: `/videolar/${video.id}.html`,
+    tur: video.data.icerikTuru,
+    aciklama: videoAciklamasiOlustur(
+      video.data.baslik,
+      video.data.aciklama
+    ),
+    metin: [
+      video.data.baslik,
+      video.data.kaynak,
+      video.data.sanatci,
+      "video müzik izle dinle YouTube"
+    ].join(" "),
+    sira: 50 + video.data.sira
+  }));
 
   const siirKayitlari: AramaKaydi[] = siirler.map((siir) => ({
     baslik: siir.data.baslik,
@@ -115,9 +129,12 @@ export const GET: APIRoute = async () => {
     sira: 100 + siir.data.sira
   }));
 
-  return new Response(JSON.stringify([...sabitSayfalar, ...siirKayitlari]), {
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
+  return new Response(
+    JSON.stringify([...sabitSayfalar, ...videoKayitlari, ...siirKayitlari]),
+    {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
     }
-  });
+  );
 };

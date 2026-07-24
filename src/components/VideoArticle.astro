@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { youtubeVideoKimliginiAl } from "../utils/youtube";
+
+interface GezintiOgesi {
+  id: string;
+  baslik: string;
+}
+
+interface Props {
+  video: CollectionEntry<"videolar">;
+  onceki?: GezintiOgesi;
+  sonraki?: GezintiOgesi;
+}
+
+const { video, onceki, sonraki } = Astro.props;
+const { data } = video;
+const videoKimligi = youtubeVideoKimliginiAl(data.youtubeAdresi);
+const gomuluVideoAdresi = `https://www.youtube.com/embed/${videoKimligi}`;
+const youtubeAdresi = `https://www.youtube.com/watch?v=${videoKimligi}`;
+---
+
+<article aria-labelledby="video-basligi" class="metin">
+  <h1 id="video-basligi">{data.baslik}</h1>
+
+  <section aria-labelledby="video-bilgileri-basligi">
+    <h2 id="video-bilgileri-basligi">Video Bilgileri</h2>
+    <dl class="bilgi-listesi">
+      <div>
+        <dt>İçerik türü</dt>
+        <dd>{data.icerikTuru}</dd>
+      </div>
+      <div>
+        <dt>Kaynak</dt>
+        <dd>{data.kaynak}</dd>
+      </div>
+      <div>
+        <dt>Sanatçı</dt>
+        <dd>{data.sanatci}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="video-kaydi-basligi">
+    <h2 id="video-kaydi-basligi">Video Kaydı</h2>
+    <div class="video-cercevesi">
+      <iframe
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        src={gomuluVideoAdresi}
+        title={`${data.baslik} - ${data.sanatci}`}
+      ></iframe>
+    </div>
+    <p>
+      <a href={youtubeAdresi}>Videoyu YouTube’da aç</a>
+    </p>
+    <p>
+      <a href="https://www.youtube.com/@m.aykurt">
+        Daha fazla videoya ulaşmak için YouTube kanalımı ziyaret edin.
+      </a>
+    </p>
+  </section>
+</article>
+
+<nav aria-label="Videolar arası gezinme" class="bolum onceki-sonraki">
+  <ul>
+    <li>
+      {
+        onceki ? (
+          <a href={`/videolar/${onceki.id}.html`} rel="prev">
+            Önceki Video: {onceki.baslik}
+          </a>
+        ) : (
+          <span>Önceki video yoktur; bu listedeki ilk videodur.</span>
+        )
+      }
+    </li>
+    <li>
+      {
+        sonraki ? (
+          <a href={`/videolar/${sonraki.id}.html`} rel="next">
+            Sonraki Video: {sonraki.baslik}
+          </a>
+        ) : (
+          <span>Sonraki video yoktur; bu listedeki son videodur.</span>
+        )
+      }
+    </li>
+  </ul>
+</nav>

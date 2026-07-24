@@ -1,7 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import CommentsSection from "../components/CommentsSection.astro";
 import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+
+const videolar = (
+  await getCollection("videolar", ({ data }) => !data.taslak)
+).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 ---
 
 <SiteLayout
@@ -16,12 +21,16 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 
   <section aria-labelledby="video-listesi-basligi" class="icerik-listesi">
     <h2 id="video-listesi-basligi">Video Listesi</h2>
-    <article class="icerik-karti">
-      <h3>Gönül Dediğin</h3>
-      <div class="baglanti-alani">
-        <a href="/videolar/gonul-dedigin.html">Dinle</a>
-      </div>
-    </article>
+    {
+      videolar.map((video) => (
+        <article class="icerik-karti">
+          <h3>{video.data.baslik}</h3>
+          <div class="baglanti-alani">
+            <a href={`/videolar/${video.id}.html`}>İzle</a>
+          </div>
+        </article>
+      ))
+    }
   </section>
 
   <nav aria-label="Video sayfaları arası gezinme" class="bolum">

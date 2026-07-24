@@ -30,3 +30,17 @@ export function siirAciklamasiOlustur(
     ACIKLAMA_EN_UZUN_KARAKTER
   );
 }
+
+export function videoAciklamasiOlustur(
+  baslik: string,
+  ozelAciklama?: string
+) {
+  const otomatikAciklama =
+    `Mehmet Aykurt’a ait “${baslik}” adlı video kaydını ` +
+    "YouTube üzerinden izleyebilirsiniz.";
+
+  return metniKisalt(
+    ozelAciklama?.trim() || otomatikAciklama,
+    ACIKLAMA_EN_UZUN_KARAKTER
+  );
+}

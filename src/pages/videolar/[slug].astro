@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import CommentsSection from "../../components/CommentsSection.astro";
+import ShareSection from "../../components/ShareSection.astro";
+import VideoArticle from "../../components/VideoArticle.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { videoAciklamasiOlustur } from "../../utils/aciklama";
+
+interface GezintiOgesi {
+  id: string;
+  baslik: string;
+}
+
+interface Props {
+  video: CollectionEntry<"videolar">;
+  onceki?: GezintiOgesi;
+  sonraki?: GezintiOgesi;
+}
+
+export async function getStaticPaths() {
+  const videolar = (
+    await getCollection("videolar", ({ data }) => !data.taslak)
+  ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
+  return videolar.map((video, sira) => ({
+    params: { slug: video.id },
+    props: {
+      video,
+      onceki:
+        sira > 0
+          ? {
+              id: videolar[sira - 1].id,
+              baslik: videolar[sira - 1].data.baslik
+            }
+          : undefined,
+      sonraki:
+        sira < videolar.length - 1
+          ? {
+              id: videolar[sira + 1].id,
+              baslik: videolar[sira + 1].data.baslik
+            }
+          : undefined
+    }
+  }));
+}
+
+const { video, onceki, sonraki } = Astro.props;
+const canonicalYolu = `/videolar/${video.id}.html`;
+const tamAdres = `https://mehmetaykurt.com.tr${canonicalYolu}`;
+const sayfaAciklamasi = videoAciklamasiOlustur(
+  video.data.baslik,
+  video.data.aciklama
+);
+---
+
+<SiteLayout
+  aktifMenu="videolar"
+  aktifMenuTuru="location"
+  aciklama={sayfaAciklamasi}
+  baslik={`${video.data.baslik} | Mehmet Aykurt Resmî Web Sitesi`}
+  canonicalYolu={canonicalYolu}
+>
+  <VideoArticle onceki={onceki} video={video} sonraki={sonraki} />
+
+  <ShareSection adres={tamAdres} />
+
+  <CommentsSection
+    aciklama="Bu video hakkındaki görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
+    sayfaAdresi={tamAdres}
+    sayfaBasligi={video.data.baslik}
+    sayfaKimligi={`video-${video.id}`}
+  />
+</SiteLayout>
