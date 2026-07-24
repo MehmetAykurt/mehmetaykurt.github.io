@@ -230,3 +230,118 @@ EVDE DEVAM ETMEK İÇİN
 
 Bu belge, önceki Codex konuşması ev bilgisayarında görünmese bile çalışmanın
 aynı kararlarla devam etmesi için hazırlanmıştır.
+
+
+13. ASTRO GEÇİŞİNDE MEVCUT DURUM
+
+24 Temmuz 2026 tarihinde:
+
+- main dalının GitHub ile eşit ve temiz olduğu doğrulandı.
+- Yerel bilgisayarda astro-gecis adlı ayrı çalışma dalı oluşturuldu.
+- Canlı sitede kullanılan mevcut HTML, CSS ve JavaScript dosyalarına
+  dokunulmadı.
+- Astro 7.1.3 temel proje yapısı kuruldu.
+- Statik çıktı ve mevcut .html adres biçimini korumak amacıyla Astro yapı
+  ayarında dosya biçimli çıktı seçildi.
+- İlk deneme derlemesi başarıyla tamamlandı.
+- Astro geçiş dalı henüz GitHub’a gönderilmedi.
+
+Bir sonraki aşama; mevcut tasarımı koruyan ortak sayfa şablonu, üst menü,
+site araması ve altbilgi bileşenlerinin hazırlanmasıdır.
+
+24 Temmuz 2026 tarihinde ortak şablon aşaması da tamamlandı:
+
+- Üstbilgi ve ana menü tek bir Astro bileşenine dönüştürüldü.
+- Erişilebilirlik bağlantısı yeni ortak menüye eklenmedi.
+- Site içi arama alanı ortak bileşene dönüştürüldü.
+- Altbilgi, sosyal bağlantılar ve ziyaretçi sayacı ortak bileşene
+  dönüştürüldü.
+- Paylaşım alanı yeniden kullanılabilir bir bileşene dönüştürüldü.
+- Ortak SEO ve sayfa iskeleti SiteLayout şablonunda toplandı.
+- Ana sayfa yeni ortak şablona taşındı.
+- Mevcut renkler, tipografi ve okuma düzeni korundu.
+- Yerel statik derleme başarıyla tamamlandı.
+
+Bir sonraki aşama şiir içerik modelinin kurulması ve mevcut şiirlerin Astro
+içerik koleksiyonuna taşınmasıdır.
+
+24 Temmuz 2026 tarihinde şiir içerik altyapısı da tamamlandı:
+
+- Astro şiir içerik koleksiyonu ve veri doğrulama şeması oluşturuldu.
+- Mevcut 10 şiirin başlığı, açıklaması, künyesi, şiir metni ve beş bölümlük
+  edebî değerlendirmesi kayıp olmadan ayrı içerik dosyalarına taşındı.
+- Şiirler sayfası içerik koleksiyonundan otomatik liste üretecek şekilde
+  hazırlandı.
+- Her şiir için ortak sayfa şablonu oluşturuldu.
+- Şiirler arasına önceki ve sonraki şiir bağlantıları eklendi.
+- Ana sayfadaki öne çıkanlar ve son eklenenler bölümleri şiir
+  koleksiyonundan otomatik beslenecek şekilde düzenlendi.
+- Yeni şiir eklemeyi kolaylaştırmak için doldurulabilir şiir şablonu
+  hazırlandı.
+- Mevcut 10 şiirin eski /siirler/şiir-adı.html adresleri korundu.
+- Toplam 12 Astro sayfası başarıyla üretildi.
+- Üretilen sayfalarda erişilebilirlik menü bağlantısının bulunmadığı
+  doğrulandı.
+- Şiirlerin başlık, SEO açıklaması, künye, metin, değerlendirme ve adres
+  bilgileri otomatik denetimle eksiksiz doğrulandı.
+
+Bir sonraki aşama Hakkımda, İletişim, Videolar, video ayrıntısı, Gizlilik,
+Arama ve 404 sayfalarının ortak Astro yapısına taşınmasıdır.
+
+24 Temmuz 2026 tarihinde genel sayfaların taşınması da tamamlandı:
+
+- Hakkımda, İletişim, Videolar, Gönül Dediğin video ayrıntısı, Gizlilik,
+  Site İçi Arama ve 404 sayfaları ortak Astro yapısına taşındı.
+- Sayfaların mevcut görünür metinleri ve SEO açıklamaları korunarak
+  karşılaştırmalı olarak doğrulandı.
+- İletişim formunun FormSubmit bağlantısı, form alanları, istenmeyen ileti
+  önleme alanı ve gönderim durum mesajları korundu.
+- Gönül Dediğin videosunun YouTube kaydı, video bilgileri, paylaşım ve yorum
+  alanları korundu.
+- Arama sayfasının eski JavaScript ile kullandığı arama kutusu kimliği ortak
+  arama bileşeniyle uyumlu hâle getirildi.
+- Astro derlemesinde 17 genel içerik adresini kapsayan sitemap.xml dosyasının
+  otomatik üretilmesi sağlandı.
+- Erişilebilirlik sayfaları, Site İçi Arama ve 404 sayfası sitemap kapsamına
+  alınmadı.
+- Site İçi Arama ve 404 sayfalarına arama motorları için noindex talimatı
+  eklendi.
+- Toplam 19 HTML sayfası hatasız üretildi.
+- Üretilen 19 sayfada kırık yerel bağlantı, yinelenen HTML kimliği ve eksik
+  ana başlık bulunmadığı doğrulandı.
+- Yeni ortak menüde erişilebilirlik bağlantısının bulunmadığı yeniden
+  doğrulandı.
+- Astro geçiş dalı hâlâ yalnızca yerel bilgisayardadır; GitHub’a gönderim
+  yapılmamıştır.
+
+Bir sonraki aşama teknik iyileştirmelerin tamamlanmasıdır: robots.txt ve
+sitemap denetimi, SEO/meta iyileştirmeleri, arama sisteminin son kontrolü,
+yorum ve sayaç entegrasyonlarının gözden geçirilmesi ve eski dosyaların ne
+zaman kaldırılacağına karar verilmesi.
+
+24 Temmuz 2026 tarihinde teknik denetimler ve yayımlama hazırlığı tamamlandı:
+
+- 19 HTML sayfasının yerel derlemesi tekrar başarıyla tamamlandı.
+- 17 dizine alınabilir sayfada başlık, açıklama, canonical ve sosyal paylaşım
+  meta bilgileri denetlendi.
+- Site içi arama gerçek tarayıcıda denendi ve doğru sonucu verdi.
+- Paylaşım düğmesi, Cusdis yorum alanı, GoatCounter ziyaretçi sayacı,
+  iletişim formu alanları ve YouTube video kaydı doğrulandı.
+- Temel sayfalar mobil genişlikte denendi ve yatay taşma bulunmadı.
+- GitHub Pages'in Astro projesini derleyerek dist klasörünü yayımlaması için
+  .github/workflows/deploy.yml iş akışı hazırlandı.
+- İş akışı yalnızca main dalına gönderim yapıldığında veya GitHub Actions
+  ekranından elle başlatıldığında yayımlama yapacaktır.
+- Eski kök HTML dosyaları şimdilik kaynakta korunacaktır; yayımlama işlemi
+  yalnızca Astro tarafından üretilen dist paketini kullanacaktır.
+- Astro geçiş dalı henüz GitHub'a gönderilmemiştir.
+
+SON YEREL ONAY
+
+24 Temmuz 2026 tarihinde bağımlılık kilidi, temiz Astro derlemesi, 19 sayfanın
+içerikleri, 10 şiirin tüm verileri, yerel bağlantılar, sitemap, robots.txt,
+özel alan adı ve GitHub Pages iş akışı son kez denetlendi.
+
+Engelleyici hata bulunmadı. astro-gecis dalındaki çalışma GitHub'a gönderilmeye
+hazırdır. Canlı yayımlama için bu değişikliklerin daha sonra main dalına
+alınması ve GitHub Pages kaynağının GitHub Actions olarak seçilmesi gerekir.

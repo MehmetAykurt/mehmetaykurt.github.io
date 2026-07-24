@@ -1,0 +1,77 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+  aktifMenu="iletisim"
+  aciklama="Mehmet Aykurt kişisel web sitesi iletişim sayfası. Siteyle ilgili görüş, öneri ve iletişim formu."
+  baslik="İletişim | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/iletisim.html"
+>
+  <section aria-labelledby="iletisim-basligi" class="metin">
+    <h1 id="iletisim-basligi">İletişim</h1>
+    <p>
+      Siteyle ilgili görüş, öneri, düşünce ve iletişim taleplerinizi aşağıdaki
+      form aracılığıyla iletebilirsiniz.
+    </p>
+    <p class="veri-bilgilendirme">
+      Bu form aracılığıyla gönderdiğiniz ad soyad, e-posta adresi, konu ve mesaj
+      bilgileri yalnızca size geri dönüş yapabilmek amacıyla kullanılır. Form
+      gönderimi FormSubmit altyapısı üzerinden sağlanır. Ayrıntılı bilgi için
+      <a href="/gizlilik.html">Gizlilik, Veri Kullanımı ve Telif Beyanı</a>
+      sayfasını inceleyebilirsiniz.
+    </p>
+    <form
+      action="https://formsubmit.co/ajax/m.aykurt38@gmail.com"
+      class="iletisim-formu"
+      id="iletisim-formu"
+      method="POST"
+    >
+      <input name="_captcha" type="hidden" value="false" />
+      <input name="_template" type="hidden" value="table" />
+      <input
+        aria-hidden="true"
+        autocomplete="off"
+        class="gizli-alan"
+        name="_honey"
+        tabindex="-1"
+        type="text"
+      />
+      <div class="form-satiri">
+        <label for="ad-soyad">Adınız Soyadınız:</label>
+        <input
+          autocomplete="name"
+          id="ad-soyad"
+          maxlength="80"
+          name="Ad Soyad"
+          required
+          type="text"
+        />
+      </div>
+      <div class="form-satiri">
+        <label for="eposta">E-posta adresiniz:</label>
+        <input
+          autocomplete="email"
+          id="eposta"
+          maxlength="120"
+          name="email"
+          required
+          type="email"
+        />
+      </div>
+      <div class="form-satiri">
+        <label for="konu">Konu:</label>
+        <input id="konu" maxlength="120" name="Konu" required type="text" />
+      </div>
+      <div class="form-satiri">
+        <label for="mesaj">Mesajınız:</label>
+        <textarea id="mesaj" maxlength="3000" name="Mesaj" required rows="8"
+        ></textarea>
+      </div>
+      <div class="buton-alani">
+        <button type="submit">Gönder</button>
+      </div>
+      <div aria-live="polite" id="iletisim-formu-durumu" role="status"></div>
+    </form>
+  </section>
+</SiteLayout>

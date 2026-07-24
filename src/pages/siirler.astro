@@ -1,0 +1,84 @@
+---
+import { getCollection } from "astro:content";
+import CommentsSection from "../components/CommentsSection.astro";
+import ShareSection from "../components/ShareSection.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+
+const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sort(
+  (birinci, ikinci) => birinci.data.sira - ikinci.data.sira
+);
+---
+
+<SiteLayout
+  aktifMenu="siirler"
+  aciklama="Mehmet Aykurt’un halk şiiri geleneğinden beslenen şiirleri, şiir künyeleri ve edebî değerlendirmeleri."
+  baslik="Şiirler | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/siirler.html"
+>
+  <section aria-labelledby="siirler-basligi" class="metin">
+    <h1 id="siirler-basligi">Şiirler</h1>
+    <p>
+      Şiir, bazen insanın söyleyemediğini söyler. Bazen bir yaranın sesi olur,
+      bazen bir özlemin, bazen de içten içe büyüyen bir sitemin.
+    </p>
+    <p>
+      Okuyacağınız bu şiirler, hayatın içinden süzülüp gelen duyguların,
+      düşüncelerin ve yaşanmışlıkların dizelere dönüşmüş hâlidir. Bu sayfalarda
+      yalnızca sevda yoktur; hasret vardır, ayrılık vardır, gurbet vardır. Köyün
+      toprağı, Anadolu’nun kokusu, insanın iç dünyası, memleket derdi, inanç,
+      sabır ve fanilik de vardır.
+    </p>
+    <p>
+      Kimi şiirde gönül konuşur, kimi şiirde vicdan. Kimi yerde bir yârin hayali
+      belirir, kimi yerde hayatın yükü, kimi yerde de insanı derinden düşündüren
+      bir hesaplaşma. Yıllar içinde biriken duygularımı, gözlemlerimi ve içimde
+      yankı bulan sözleri şiirle dile getirmeye çalıştım.
+    </p>
+    <p>
+      Bazen bir türkü sıcaklığında, bazen bir iç çekişte, bazen de susmaması
+      gereken bir sözde kendimi buldum. Bu sayfalarda yer alan şiirlerin her
+      biri, hayatın başka bir yüzüne dokunur. Sevdaya da değmiştir, ayrılığa da;
+      toprağa da değmiştir, zamana da; insana da değmiştir, kadere de.
+    </p>
+    <p>
+      Şiir benim için yalnızca yazılan bir metin değil, hissedilen bir
+      hakikattir. Bu yüzden burada yer alan her dize, sadece kalemden değil,
+      gönülden gelmiştir. Her şiirde biraz hayat, biraz hatıra, biraz sızı, biraz
+      da umut vardır.
+    </p>
+    <p>
+      Dileğim odur ki bu satırlarda siz de kendinizden bir iz bulasınız. Bir
+      hatıraya rastlayasınız, bir duyguda durup içinize dönesiniz, bir dizede
+      kendi sessizliğinizi işitesiniz. Çünkü şiir, gerçek yerini ancak onu
+      anlayan bir gönülde bulur.
+    </p>
+    <p>
+      Eğer bir söz size dokunur, bir dize içinizde yankı bulursa, bilin ki aynı
+      insanlık hâlinde buluşmuşuzdur. Kalpten kaleme, kalemden gönüllere…
+    </p>
+  </section>
+
+  <section aria-labelledby="siir-listesi-basligi" class="icerik-listesi">
+    <h2 id="siir-listesi-basligi">Şiir Listesi</h2>
+    {
+      siirler.map((siir) => (
+        <article class="icerik-karti">
+          <h3>{siir.data.baslik}</h3>
+          <div class="baglanti-alani">
+            <a href={`/siirler/${siir.id}.html`}>Şiiri oku</a>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+
+  <ShareSection adres="https://mehmetaykurt.com.tr/siirler.html" />
+
+  <CommentsSection
+    aciklama="Şiirler hakkındaki genel görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
+    sayfaAdresi="https://mehmetaykurt.com.tr/siirler.html"
+    sayfaBasligi="Şiirler"
+    sayfaKimligi="siirler"
+  />
+</SiteLayout>
+

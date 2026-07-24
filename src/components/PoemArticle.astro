@@ -1,0 +1,156 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface GezintiOgesi {
+  id: string;
+  baslik: string;
+}
+
+interface Props {
+  siir: CollectionEntry<"siirler">;
+  onceki?: GezintiOgesi;
+  sonraki?: GezintiOgesi;
+}
+
+const { siir, onceki, sonraki } = Astro.props;
+const { data } = siir;
+const kitalar = data.siirMetni
+  .trim()
+  .split(/\n\s*\n/)
+  .map((kita) => kita.split("\n").map((dize) => dize.trim()).filter(Boolean));
+
+const tarihMetni = new Intl.DateTimeFormat("tr-TR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC"
+}).format(data.tarih);
+const tarihDegeri = data.tarih.toISOString().slice(0, 10);
+
+const kunyeBilgileri = [
+  {
+    etiket: "Eklenme tarihi",
+    deger: tarihMetni,
+    tarih: tarihDegeri
+  },
+  { etiket: "İçerik türü", deger: data.icerikTuru },
+  { etiket: "Ana tema", deger: data.anaTema },
+  { etiket: "Konu", deger: data.konu },
+  { etiket: "Şiir türü", deger: data.siirTuru },
+  { etiket: "Gelenek", deger: data.gelenek },
+  { etiket: "Ölçü", deger: data.olcu }
+];
+
+const degerlendirmeBolumleri = [
+  {
+    kimlik: "genel-bakis-basligi",
+    baslik: "Genel Bakış",
+    metin: data.degerlendirme.genelBakis
+  },
+  {
+    kimlik: "tema-ve-konu-basligi",
+    baslik: "Tema ve Konu",
+    metin: data.degerlendirme.temaVeKonu
+  },
+  {
+    kimlik: "dil-ve-soyleyis-basligi",
+    baslik: "Dil ve Söyleyiş",
+    metin: data.degerlendirme.dilVeSoylevis
+  },
+  {
+    kimlik: "ahenk-ve-yapi-basligi",
+    baslik: "Ahenk ve Yapı",
+    metin: data.degerlendirme.ahenkVeYapi
+  },
+  {
+    kimlik: "gelenekle-baglanti-ve-sonuc-basligi",
+    baslik: "Gelenekle Bağlantı ve Sonuç",
+    metin: data.degerlendirme.gelenekVeSonuc
+  }
+];
+---
+
+<article aria-labelledby="siir-basligi" class="metin">
+  <h1 id="siir-basligi">{data.baslik}</h1>
+
+  <section aria-labelledby="kunye-basligi" class="siir-kunyesi-bolumu">
+    <h2 id="kunye-basligi">Künye</h2>
+    <dl class="bilgi-listesi siir-kunyesi">
+      {
+        kunyeBilgileri.map((bilgi) => (
+          <div>
+            <dt>{bilgi.etiket}</dt>
+            <dd>
+              {bilgi.tarih ? (
+                <time datetime={bilgi.tarih}>{bilgi.deger}</time>
+              ) : (
+                bilgi.deger
+              )}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section aria-labelledby="siir-metni-basligi" class="siir-metni-bolumu">
+    <h2 id="siir-metni-basligi">Şiir Metni</h2>
+    <div class="metin-icerigi">
+      {
+        kitalar.map((kita) => (
+          <p>
+            {kita.map((dize, sira) => (
+              <>
+                {dize}
+                {sira < kita.length - 1 && <br />}
+              </>
+            ))}
+          </p>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    aria-labelledby="edebi-degerlendirme-basligi"
+    class="edebi-degerlendirme-bolumu"
+  >
+    <h2 id="edebi-degerlendirme-basligi">Edebî Değerlendirme</h2>
+    {
+      degerlendirmeBolumleri.map((bolum) => (
+        <section aria-labelledby={bolum.kimlik} class="edebi-alt-bolum">
+          <h3 id={bolum.kimlik}>{bolum.baslik}</h3>
+          <p>{bolum.metin}</p>
+        </section>
+      ))
+    }
+  </section>
+</article>
+
+<nav aria-label="Şiirler arası gezinme" class="bolum onceki-sonraki">
+  <ul>
+    <li>
+      {
+        onceki ? (
+          <a href={`/siirler/${onceki.id}.html`} rel="prev">
+            Önceki Şiir: {onceki.baslik}
+          </a>
+        ) : (
+          <span>Önceki şiir yoktur; bu listedeki ilk şiirdir.</span>
+        )
+      }
+    </li>
+    <li>
+      {
+        sonraki ? (
+          <a href={`/siirler/${sonraki.id}.html`} rel="next">
+            Sonraki Şiir: {sonraki.baslik}
+          </a>
+        ) : (
+          <span>Sonraki şiir yoktur; bu listedeki son şiirdir.</span>
+        )
+      }
+    </li>
+  </ul>
+</nav>
+

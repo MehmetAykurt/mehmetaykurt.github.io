@@ -1,0 +1,77 @@
+---
+import CommentsSection from "../../components/CommentsSection.astro";
+import ShareSection from "../../components/ShareSection.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+  aktifMenu="videolar"
+  aktifMenuTuru="location"
+  aciklama="Mehmet Aykurt’un Gönül Dediğin adlı şiir ve müzik kaydını YouTube üzerinden dinleyebileceğiniz video sayfası."
+  baslik="Gönül Dediğin | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/videolar/gonul-dedigin.html"
+>
+  <article aria-labelledby="video-basligi" class="metin">
+    <h1 id="video-basligi">Gönül Dediğin</h1>
+    <section aria-labelledby="video-bilgileri-basligi">
+      <h2 id="video-bilgileri-basligi">Video Bilgileri</h2>
+      <dl class="bilgi-listesi">
+        <div>
+          <dt>İçerik türü</dt>
+          <dd>Video kaydı</dd>
+        </div>
+        <div>
+          <dt>Kaynak</dt>
+          <dd>YouTube</dd>
+        </div>
+        <div>
+          <dt>Sanatçı</dt>
+          <dd>Mehmet Aykurt</dd>
+        </div>
+      </dl>
+    </section>
+    <section aria-labelledby="video-kaydi-basligi">
+      <h2 id="video-kaydi-basligi">Video Kaydı</h2>
+      <div class="video-cercevesi">
+        <iframe
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          src="https://www.youtube.com/embed/T-r53iLDUKk?si=yZcnMGEiz6VyAlCe"
+          title="Gönül Dediğin - Mehmet Aykurt"
+        ></iframe>
+      </div>
+      <p>
+        <a href="https://www.youtube.com/watch?v=T-r53iLDUKk">
+          Videoyu YouTube’da aç
+        </a>
+      </p>
+      <p>
+        <a href="https://www.youtube.com/@m.aykurt">
+          Daha fazla videoya ulaşmak için YouTube kanalımı ziyaret edin.
+        </a>
+      </p>
+    </section>
+  </article>
+
+  <nav aria-label="Videolar arası gezinme" class="bolum onceki-sonraki">
+    <ul>
+      <li>
+        <span>Önceki video yoktur; bu ilk video sayfasıdır.</span>
+      </li>
+      <li>
+        <span>Sonraki video, yeni kayıt eklendiğinde hazırlanacaktır.</span>
+      </li>
+    </ul>
+  </nav>
+
+  <ShareSection adres="https://mehmetaykurt.com.tr/videolar/gonul-dedigin.html" />
+
+  <CommentsSection
+    aciklama="Bu video hakkındaki görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
+    sayfaAdresi="https://mehmetaykurt.com.tr/videolar/gonul-dedigin.html"
+    sayfaBasligi="Gönül Dediğin"
+    sayfaKimligi="video-gonul-dedigin"
+  />
+</SiteLayout>

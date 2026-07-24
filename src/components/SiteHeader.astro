@@ -1,0 +1,42 @@
+---
+interface Props {
+  aktifMenu?: "ana-sayfa" | "hakkimda" | "iletisim" | "siirler" | "videolar";
+  aktifMenuTuru?: "page" | "location";
+}
+
+const { aktifMenu, aktifMenuTuru = "page" } = Astro.props;
+
+const menuOgeleri = [
+  { kimlik: "ana-sayfa", etiket: "Ana Sayfa", adres: "/index.html" },
+  { kimlik: "hakkimda", etiket: "Hakkımda", adres: "/hakkimda.html" },
+  { kimlik: "iletisim", etiket: "İletişim", adres: "/iletisim.html" },
+  { kimlik: "siirler", etiket: "Şiirler", adres: "/siirler.html" },
+  { kimlik: "videolar", etiket: "Videolar", adres: "/videolar.html" }
+] as const;
+---
+
+<header class="site-baslik">
+  <div class="site-adi">
+    <a href="/index.html">Mehmet Aykurt Resmî Web Sitesi</a>
+  </div>
+</header>
+
+<nav aria-labelledby="ana-menu-basligi" class="ust-menu">
+  <span class="bolum-etiketi" id="ana-menu-basligi">Ana Menü</span>
+  <ul>
+    {
+      menuOgeleri.map((oge) => (
+        <li>
+          <a
+            aria-current={
+              aktifMenu === oge.kimlik ? aktifMenuTuru : undefined
+            }
+            href={oge.adres}
+          >
+            {oge.etiket}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

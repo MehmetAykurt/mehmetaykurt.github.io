@@ -1,0 +1,48 @@
+---
+import CommentsSection from "../components/CommentsSection.astro";
+import ShareSection from "../components/ShareSection.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+---
+
+<SiteLayout
+  aktifMenu="videolar"
+  aciklama="Mehmet Aykurt’un şiir, müzik ve seslendirme çalışmalarına ait video kayıtlarının yer aldığı kişisel video sayfası."
+  baslik="Videolar | Mehmet Aykurt Resmî Web Sitesi"
+  canonicalYolu="/videolar.html"
+>
+  <section aria-labelledby="videolar-basligi" class="metin">
+    <h1 id="videolar-basligi">Videolar</h1>
+  </section>
+
+  <section aria-labelledby="video-listesi-basligi" class="icerik-listesi">
+    <h2 id="video-listesi-basligi">Video Listesi</h2>
+    <article class="icerik-karti">
+      <h3>Gönül Dediğin</h3>
+      <div class="baglanti-alani">
+        <a href="/videolar/gonul-dedigin.html">Dinle</a>
+      </div>
+    </article>
+  </section>
+
+  <nav aria-label="Video sayfaları arası gezinme" class="bolum">
+    <ul>
+      <li>
+        <span>Önceki sayfa yoktur; bu ilk video listesi sayfasıdır.</span>
+      </li>
+      <li>
+        <span>
+          Sonraki sayfa, yeni video kayıtları eklendiğinde hazırlanacaktır.
+        </span>
+      </li>
+    </ul>
+  </nav>
+
+  <ShareSection adres="https://mehmetaykurt.com.tr/videolar.html" />
+
+  <CommentsSection
+    aciklama="Videolar hakkındaki genel görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
+    sayfaAdresi="https://mehmetaykurt.com.tr/videolar.html"
+    sayfaBasligi="Videolar"
+    sayfaKimligi="videolar"
+  />
+</SiteLayout>

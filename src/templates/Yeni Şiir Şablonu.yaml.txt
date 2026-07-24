@@ -1,0 +1,28 @@
+baslik: Şiirin Başlığı
+aciklama: Arama motorları için şiiri anlatan kısa açıklama.
+tarih: "2026-01-01"
+icerikTuru: Şiir
+anaTema: Şiirin ana teması
+konu: Şiirin konusu
+siirTuru: Lirik şiir
+gelenek: Halk şiiri geleneği
+olcu: 11’li hece ölçüsü
+siirMetni: |-
+  Birinci kıtanın birinci dizesi
+  Birinci kıtanın ikinci dizesi
+  Birinci kıtanın üçüncü dizesi
+  Birinci kıtanın dördüncü dizesi
+
+  İkinci kıtanın birinci dizesi
+  İkinci kıtanın ikinci dizesi
+  İkinci kıtanın üçüncü dizesi
+  İkinci kıtanın dördüncü dizesi
+degerlendirme:
+  genelBakis: Şiirin genel havası ve okuyucuda bıraktığı ilk duygu.
+  temaVeKonu: Ana tema ve konunun ayrıntılı açıklaması.
+  dilVeSoylevis: Şiirin dili, söyleyişi ve anlatım tonu.
+  ahenkVeYapi: Ölçü, uyak, tekrarlar, dize akışı ve ritim.
+  gelenekVeSonuc: Gelenekle ilişkisi ve şiirin öne çıkan yönü.
+sira: 11
+oneCikan: false
+taslak: true
