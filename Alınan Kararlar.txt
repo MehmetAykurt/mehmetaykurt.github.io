@@ -421,3 +421,20 @@ OTOMATİK ŞİİR AÇIKLAMALARI
 - Yeni Şiir Şablonu'nda açıklama alanı isteğe bağlı hâle getirildi.
 - Çok uzun başlıklarda açıklama, kelimeyi mümkün olduğunca bölmeden güvenli
   biçimde kısaltılacaktır.
+
+GITHUB DEPOSU TELİF VE KULLANIM BİLDİRİMİ
+
+24 Temmuz 2026 tarihinde public GitHub deposunun ana sayfasında gösterilmek
+üzere README.md dosyası eklendi.
+
+- Deponun herkese açık olmasının eserleri kamu malı veya açık kaynak hâline
+  getirmediği açıkça belirtildi.
+- Mehmet Aykurt'a ait şiirler, edebî içerikler, değerlendirmeler ve site için
+  özel olarak hazırlanmış özgün unsurlar bakımından tüm hakların saklı olduğu
+  bildirildi.
+- İzinsiz kopyalama, çoğaltma, yayımlama, dağıtma, uyarlama, başka projelere
+  dâhil etme, veri setlerinde veya yapay zekâ eğitimi amacıyla kullanma
+  yasakları açıklandı.
+- Astro ve diğer üçüncü taraf yazılım paketlerinin kendi lisans koşullarına
+  tabi olduğu ayrıca belirtildi.
+- Depoya açık kaynak lisansı eklenmemesine karar verildi.
