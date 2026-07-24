@@ -1,0 +1,232 @@
+MEHMET AYKURT RESMÎ WEB SİTESİ
+ALINAN KARARLAR VE DEVAM NOTLARI
+
+Son güncelleme: 23 Temmuz 2026
+
+1. SİTENİN TEMEL KİMLİĞİ
+
+mehmetaykurt.com.tr, Mehmet Aykurt’un şiirlerini, edebî çalışmalarını ve
+müzik çalışmalarını yayımlamak amacıyla kullanılan kişisel edebiyat ve
+sanatçı sitesidir.
+
+Sitenin temel kimliği:
+
+- Şiir
+- Edebiyat
+- Müzik çalışmaları
+- İleride yayımlanacak roman çalışmaları
+
+Erişilebilirlik ve NVDA eklentileri, sitenin ana kimliğinin parçası olarak
+sunulmayacaktır.
+
+
+2. MENÜ YAPISI
+
+Mevcut menü yapısı korunacaktır:
+
+- Ana Sayfa
+- Hakkımda
+- İletişim
+- Şiirler
+- Videolar
+
+Erişilebilirlik bağlantısı bütün sayfalardaki ana menülerden kaldırılacaktır.
+
+Roman içeriği henüz yayıma hazır olmadığı için şimdilik menüye “Romanlar”
+bağlantısı eklenmeyecektir. Roman içeriği hazır olduğunda ayrıca
+değerlendirilecektir.
+
+
+3. ERİŞİLEBİLİRLİK SAYFALARI
+
+“erisilebilirlik” klasörü ve mevcut erişilebilirlik HTML sayfaları şimdilik
+fiziksel olarak korunacaktır.
+
+Ancak bu sayfalar:
+
+- Ana menüde gösterilmeyecektir.
+- Ana sayfada tanıtılmayacaktır.
+- Diğer site sayfalarından bağlantı almayacaktır.
+- Site içi arama sonuçlarında gösterilmeyecektir.
+- sitemap.xml içinde yer almayacaktır.
+
+Sayfaların doğrudan adreslerini bilen kullanıcılar bu sayfalara erişmeye
+devam edebilecektir.
+
+
+4. SİLİNEN VE GERİ GETİRİLMEYECEK DOSYALAR
+
+Aşağıdaki içerikler Mehmet Aykurt tarafından silinmiştir ve geri
+getirilmeyecektir:
+
+- Site-Dosyaları.zip
+- engelsiz-mail klasörü ve bu klasörün içeriği
+
+
+5. ANA SAYFA HİYERARŞİSİ
+
+Ana sayfa mevcut yapısı temel alınarak geliştirilecektir.
+
+Önerilen içerik sıralaması:
+
+1. Mehmet Aykurt’u ve sitenin edebî kimliğini anlatan kısa karşılama
+2. Öne çıkan eserler
+3. Son eklenen içerikler
+4. Sayfayı paylaşma alanı
+5. Sosyal bağlantılar, ziyaretçi bilgileri ve altbilgi
+
+Ana sayfa erişilebilirlik çalışmalarını öne çıkarmayacaktır.
+
+
+6. GÖRSEL TASARIM
+
+Mevcut görünüm edebiyat sitesi için uygun bulunmuştur ve ana karakteri
+korunacaktır.
+
+Korunacak özellikler:
+
+- Sıcak ve sakin renk paleti
+- Serif ağırlıklı yazı karakteri
+- Büyük ve rahat okunabilir metin
+- Sade, dikkat dağıtmayan görünüm
+- Klavye ve ekran okuyucu erişilebilirliği
+- Dar okuma genişliği
+- Mobil uyumluluk
+
+Tamamen farklı bir tasarıma geçilmeyecektir. Gerekli görülen yerlerde şu
+iyileştirmeler yapılabilir:
+
+- Başlık ve içerik hiyerarşisini güçlendirme
+- Ana sayfa karşılama metnini geliştirme
+- İçerik kartlarını ve listeleri düzenleme
+- Mobil menü ve boşlukları iyileştirme
+- Şiir okuma deneyimini geliştirme
+- Sitenin edebî kimliğini daha belirgin hâle getirme
+
+
+7. ASTRO’YA GEÇİŞ KARARI
+
+Site manuel olarak çoğaltılan HTML yapısından Astro tabanlı statik site
+yapısına geçirilecektir.
+
+Astro’ya geçiş nedenleri:
+
+- Yüzü aşkın şiirin siteye eklenecek olması
+- Roman ve müzik içeriklerinin zamanla artacak olması
+- Menü, altbilgi ve diğer ortak alanların tek merkezden yönetilmesi
+- Şiir sayfalarının ortak şablondan otomatik üretilmesi
+- Site içi aramanın büyüyen içeriğe uygun hâle getirilmesi
+- Sitemap ve içerik listelerinin otomatik oluşturulması
+- Yeni içerik ekleme sürecinin kolaylaştırılması
+
+Astro’ya geçildikten sonra ziyaretçiye yine statik HTML, CSS ve gerektiği
+kadar JavaScript sunulacaktır.
+
+GitHub Pages kullanılmaya devam edilecektir.
+
+mehmetaykurt.com.tr özel alan adı korunacaktır.
+
+
+8. ADRESLERİN KORUNMASI
+
+Mevcut sayfa adresleri mümkün olduğu kadar aynen korunacaktır.
+
+Özellikle daha önce yayımlanmış şiir, video ve temel site sayfalarının
+bağlantıları Astro geçişi sırasında bozulmamalıdır.
+
+Adres değişikliği zorunlu olursa uygun yönlendirme yöntemi belirlenmeden
+eski adres kaldırılmamalıdır.
+
+
+9. ASTRO İÇERİK YAPISI
+
+İlk aşamada aşağıdaki içerik türleri düşünülmektedir:
+
+- Şiirler
+- Müzik ve video çalışmaları
+- Sabit sayfalar
+
+Şiir kayıtlarında kullanılabilecek temel bilgiler:
+
+- Başlık
+- Sayfa adresi
+- Eklenme tarihi
+- İçerik türü
+- Ana tema
+- Konu
+- Şiir türü
+- Gelenek
+- Ölçü
+- Şiir metni
+- Edebî değerlendirme
+- SEO açıklaması
+- Öne çıkan içerik bilgisi
+
+Roman içeriği hazır olmadığı için roman koleksiyonu ilk aşamada zorunlu
+değildir. Gerektiğinde daha sonra eklenebilir.
+
+
+10. SONRA YAPILACAK TEKNİK İYİLEŞTİRMELER
+
+- Mevcut küçük HTML hatalarının düzeltilmesi
+- SEO başlık ve açıklamalarının geliştirilmesi
+- Ana sayfa ve şiir listesi açıklamalarının iyileştirilmesi
+- Sosyal paylaşım görseli ve gerekli meta bilgilerinin eklenmesi
+- Sitemap’in otomatik üretilmesi
+- Yüzlerce içeriğe uygun site içi arama sistemi kurulması
+- Yorum sisteminin hangi sayfalarda bulunacağının değerlendirilmesi
+- Ziyaretçi sayacının kullanımının değerlendirilmesi
+- Ortak menü, altbilgi ve sayfa şablonlarının oluşturulması
+- Mevcut bağlantıların korunması
+- Erişilebilirlik bağlantılarının site içinden kaldırılması
+
+
+11. MEVCUT SİTE HAKKINDA İNCELEME NOTLARI
+
+Mevcut site saf HTML, CSS ve JavaScript kullanmaktadır.
+
+İnceleme sırasında:
+
+- Yerel bağlantılarda kırık adres bulunmamıştır.
+- Yinelenen HTML kimliği bulunmamıştır.
+- Sayfalarda semantik nav, main ve footer yapıları bulunmaktadır.
+- Ana içeriğe geçiş bağlantısı kullanılmaktadır.
+- Klavye odağı belirgindir.
+- Mobil görünüm düşünülmüştür.
+- Ekran okuyucu için canlı durum alanları kullanılmaktadır.
+- Mevcut tasarımın genel okuma deneyimi uygun bulunmuştur.
+
+Bakım açısından temel sorun; menü, arama, altbilgi, paylaşım ve yorum
+alanlarının çok sayıda HTML dosyasında ayrı ayrı tekrar edilmesidir.
+Astro’ya geçiş bu sorunu çözmek amacıyla seçilmiştir.
+
+
+12. ÇALIŞMA KURALI
+
+Astro dönüşümüne başlanmadan önce mevcut Git durumu kontrol edilmelidir.
+
+Mehmet Aykurt’un yaptığı silme işlemleri ve başka kişisel değişiklikler
+korunmalıdır.
+
+Çalışma sırasında mevcut site doğrudan ve topluca silinmemelidir. Yeni Astro
+yapısı doğrulandıktan, sayfa adresleri kontrol edildikten ve içeriklerin
+eksiksiz taşındığı görüldükten sonra eski dosyalar hakkında karar
+verilmelidir.
+
+Erişilebilirlik, klavye kullanımı ve ekran okuyucu uyumluluğu dönüşüm
+boyunca temel gereksinim olarak korunmalıdır.
+
+
+EVDE DEVAM ETMEK İÇİN
+
+1. GitHub deposunun güncel hâlini ev bilgisayarına indirin veya mevcut
+   yerel kopyada “pull” işlemi yapın.
+2. Codex’te site klasörünü açın.
+3. Şu isteği yazın:
+
+   “Önce Alınan Kararlar.txt dosyasını ve mevcut siteyi incele.
+   Dosyada yazılı kararları koruyarak kaldığımız yerden devam edelim.
+   Ben onay vermeden kapsamlı dönüşüme veya dosya silmeye başlama.”
+
+Bu belge, önceki Codex konuşması ev bilgisayarında görünmese bile çalışmanın
+aynı kararlarla devam etmesi için hazırlanmıştır.
