@@ -9,7 +9,7 @@ const siirler = defineCollection({
   }),
   schema: z.object({
     baslik: z.string().min(1),
-    aciklama: z.string().min(1),
+    aciklama: z.string().trim().min(1).max(155).optional(),
     tarih: z.coerce.date(),
     icerikTuru: z.literal("Şiir"),
     anaTema: z.string().min(1),
@@ -32,4 +32,3 @@ const siirler = defineCollection({
 });
 
 export const collections = { siirler };
-

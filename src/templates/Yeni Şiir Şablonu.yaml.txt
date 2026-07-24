@@ -1,5 +1,6 @@
 baslik: Şiirin Başlığı
-aciklama: Arama motorları için şiiri anlatan kısa açıklama.
+# Açıklama başlıktan otomatik üretilir. İstenirse en fazla 155 karakterlik
+# özel bir "aciklama" alanı eklenebilir.
 tarih: "2026-01-01"
 icerikTuru: Şiir
 anaTema: Şiirin ana teması

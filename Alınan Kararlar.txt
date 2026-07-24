@@ -407,3 +407,17 @@ OTOMATİK ASTRO KOD DENETİMİ
 - İlk denetimde ana sayfadaki öne çıkan içeriklerin isteğe bağlı şiir dizesi
   alanında bulunan tür belirsizlikleri giderildi.
 - Son denetim 23 dosyada 0 hata, 0 uyarı ve 0 bilgi notuyla tamamlandı.
+
+OTOMATİK ŞİİR AÇIKLAMALARI
+
+24 Temmuz 2026 tarihinde şiir sayfalarının açıklama alanı otomatikleştirildi.
+
+- Açıklamalar için site içinde en fazla 155 karakter sınırı belirlendi.
+- Bir şiirde özel açıklama yazılmışsa bu açıklama korunacaktır.
+- Yeni bir şiirde "aciklama" alanı bulunmazsa şiirin başlığından otomatik
+  açıklama üretilecektir.
+- Otomatik açıklama; şiir sayfasının arama motoru açıklamasında, sosyal paylaşım
+  açıklamasında ve site içi arama sonuçlarında aynı şekilde kullanılacaktır.
+- Yeni Şiir Şablonu'nda açıklama alanı isteğe bağlı hâle getirildi.
+- Çok uzun başlıklarda açıklama, kelimeyi mümkün olduğunca bölmeden güvenli
+  biçimde kısaltılacaktır.

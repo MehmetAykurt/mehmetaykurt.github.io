@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
+import { siirAciklamasiOlustur } from "../utils/aciklama";
 
 interface AramaKaydi {
   baslik: string;
@@ -93,7 +94,10 @@ export const GET: APIRoute = async () => {
     baslik: siir.data.baslik,
     adres: `/siirler/${siir.id}.html`,
     tur: siir.data.icerikTuru,
-    aciklama: siir.data.aciklama,
+    aciklama: siirAciklamasiOlustur(
+      siir.data.baslik,
+      siir.data.aciklama
+    ),
     anaTema: siir.data.anaTema,
     konu: siir.data.konu,
     metin: [
