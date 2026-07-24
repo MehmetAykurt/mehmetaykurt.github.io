@@ -25,7 +25,7 @@ const sabitSayfalar: AramaKaydi[] = [
     aciklama:
       "Mehmet Aykurt’un şiir, edebiyat ve müzik çalışmalarını bir araya getiren resmî web sitesi.",
     metin:
-      "Mehmet Aykurt resmî web sitesi, öne çıkan içerikler ve son eklenen eserler.",
+      "Mehmet Aykurt resmî web sitesi, yeni şiirler ve son eklenen içerikler.",
     sira: 1
   },
   {
@@ -124,7 +124,8 @@ export const GET: APIRoute = async () => {
       siir.data.degerlendirme.temaVeKonu,
       siir.data.degerlendirme.dilVeSoylevis,
       siir.data.degerlendirme.ahenkVeYapi,
-      siir.data.degerlendirme.gelenekVeSonuc
+      siir.data.degerlendirme.gelenekVeSonuc,
+      siir.data.youtubeAdresi ? "video seslendirme müzik izle dinle YouTube" : ""
     ].join(" "),
     sira: 100 + siir.data.sira
   }));

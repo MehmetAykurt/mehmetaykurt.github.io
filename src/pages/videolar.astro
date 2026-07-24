@@ -3,15 +3,36 @@ import { getCollection } from "astro:content";
 import CommentsSection from "../components/CommentsSection.astro";
 import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { siirYayindaMi } from "../utils/yayin";
 
 const videolar = (
   await getCollection("videolar", ({ data }) => !data.taslak)
 ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
+const videoKayitliSiirler = (
+  await getCollection(
+    "siirler",
+    ({ data }) => siirYayindaMi(data) && Boolean(data.youtubeAdresi)
+  )
+).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+
+const videoKayitlari = [
+  ...videoKayitliSiirler.map((siir) => ({
+    baslik: siir.data.baslik,
+    adres: `/siirler/${siir.id}.html#video-kaydi`,
+    baglantiMetni: "Şiiri oku ve videoyu izle"
+  })),
+  ...videolar.map((video) => ({
+    baslik: video.data.baslik,
+    adres: `/videolar/${video.id}.html`,
+    baglantiMetni: "Videoyu izle"
+  }))
+];
 ---
 
 <SiteLayout
   aktifMenu="videolar"
-  aciklama="Mehmet Aykurt’un şiir, müzik ve seslendirme çalışmalarına ait video kayıtlarının yer aldığı kişisel video sayfası."
+  aciklama="Mehmet Aykurt’un şiir seslendirmeleri, müzik çalışmaları ve bağımsız video kayıtlarının yer aldığı video bölümü."
   baslik="Videolar | Mehmet Aykurt Resmî Web Sitesi"
   canonicalYolu="/videolar.html"
 >
@@ -22,11 +43,11 @@ const videolar = (
   <section aria-labelledby="video-listesi-basligi" class="icerik-listesi">
     <h2 id="video-listesi-basligi">Video Listesi</h2>
     {
-      videolar.map((video) => (
+      videoKayitlari.map((video) => (
         <article class="icerik-karti">
-          <h3>{video.data.baslik}</h3>
+          <h3>{video.baslik}</h3>
           <div class="baglanti-alani">
-            <a href={`/videolar/${video.id}.html`}>İzle</a>
+            <a href={video.adres}>{video.baglantiMetni}</a>
           </div>
         </article>
       ))

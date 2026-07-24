@@ -70,6 +70,6 @@ const sayfaAciklamasi = siirAciklamasiOlustur(
     aciklama="Bu şiir hakkındaki görüş ve düşüncelerinizi aşağıdaki yorum alanından iletebilirsiniz. Yorumlar, uygunluk kontrolünden sonra yayımlanır."
     sayfaAdresi={tamAdres}
     sayfaBasligi={siir.data.baslik}
-    sayfaKimligi={`siirler/${siir.id}`}
+    sayfaKimligi={siir.data.yorumKimligi ?? `siirler/${siir.id}`}
   />
 </SiteLayout>

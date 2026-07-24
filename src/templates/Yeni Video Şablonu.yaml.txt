@@ -4,8 +4,8 @@ baslik: Videonun Başlığı
 icerikTuru: Video kaydı
 kaynak: YouTube
 sanatci: Mehmet Aykurt
+tarih: "2026-01-01"
 youtubeAdresi: https://www.youtube.com/watch?v=VIDEO_KIMLIGI
 sira: 2
-oneCikan: false
 # true: sitede gösterme; false: GitHub'a gönderildiğinde yayımla
 taslak: true

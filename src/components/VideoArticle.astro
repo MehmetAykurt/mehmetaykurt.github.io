@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { youtubeVideoKimliginiAl } from "../utils/youtube";
+import YouTubeVideo from "./YouTubeVideo.astro";
 
 interface GezintiOgesi {
   id: string;
@@ -15,9 +15,13 @@ interface Props {
 
 const { video, onceki, sonraki } = Astro.props;
 const { data } = video;
-const videoKimligi = youtubeVideoKimliginiAl(data.youtubeAdresi);
-const gomuluVideoAdresi = `https://www.youtube.com/embed/${videoKimligi}`;
-const youtubeAdresi = `https://www.youtube.com/watch?v=${videoKimligi}`;
+const tarihMetni = new Intl.DateTimeFormat("tr-TR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC"
+}).format(data.tarih);
+const tarihDegeri = data.tarih.toISOString().slice(0, 10);
 ---
 
 <article aria-labelledby="video-basligi" class="metin">
@@ -26,6 +30,10 @@ const youtubeAdresi = `https://www.youtube.com/watch?v=${videoKimligi}`;
   <section aria-labelledby="video-bilgileri-basligi">
     <h2 id="video-bilgileri-basligi">Video Bilgileri</h2>
     <dl class="bilgi-listesi">
+      <div>
+        <dt>Eklenme tarihi</dt>
+        <dd><time datetime={tarihDegeri}>{tarihMetni}</time></dd>
+      </div>
       <div>
         <dt>İçerik türü</dt>
         <dd>{data.icerikTuru}</dd>
@@ -41,27 +49,11 @@ const youtubeAdresi = `https://www.youtube.com/watch?v=${videoKimligi}`;
     </dl>
   </section>
 
-  <section aria-labelledby="video-kaydi-basligi">
-    <h2 id="video-kaydi-basligi">Video Kaydı</h2>
-    <div class="video-cercevesi">
-      <iframe
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        src={gomuluVideoAdresi}
-        title={`${data.baslik} - ${data.sanatci}`}
-      ></iframe>
-    </div>
-    <p>
-      <a href={youtubeAdresi}>Videoyu YouTube’da aç</a>
-    </p>
-    <p>
-      <a href="https://www.youtube.com/@m.aykurt">
-        Daha fazla videoya ulaşmak için YouTube kanalımı ziyaret edin.
-      </a>
-    </p>
-  </section>
+  <YouTubeVideo
+    baslik={data.baslik}
+    sanatci={data.sanatci}
+    youtubeAdresi={data.youtubeAdresi}
+  />
 </article>
 
 <nav aria-label="Videolar arası gezinme" class="bolum onceki-sonraki">

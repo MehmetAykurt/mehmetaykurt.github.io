@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import YouTubeVideo from "./YouTubeVideo.astro";
 
 interface GezintiOgesi {
   id: string;
@@ -111,6 +112,16 @@ const degerlendirmeBolumleri = [
     </div>
   </section>
 
+  {
+    data.youtubeAdresi && (
+      <YouTubeVideo
+        baslik={data.baslik}
+        sanatci="Mehmet Aykurt"
+        youtubeAdresi={data.youtubeAdresi}
+      />
+    )
+  }
+
   <section
     aria-labelledby="edebi-degerlendirme-basligi"
     class="edebi-degerlendirme-bolumu"
@@ -153,4 +164,3 @@ const degerlendirmeBolumleri = [
     </li>
   </ul>
 </nav>
-

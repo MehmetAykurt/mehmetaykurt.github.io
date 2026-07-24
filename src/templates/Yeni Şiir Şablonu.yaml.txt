@@ -9,6 +9,8 @@ konu: Şiirin konusu
 siirTuru: Lirik şiir
 gelenek: Halk şiiri geleneği
 olcu: 11’li hece ölçüsü
+# Video yoksa tırnakların arasını boş bırakın.
+youtubeAdresi: ""
 siirMetni: |-
   Birinci kıtanın birinci dizesi
   Birinci kıtanın ikinci dizesi
@@ -26,6 +28,5 @@ degerlendirme:
   ahenkVeYapi: Ölçü, uyak, tekrarlar, dize akışı ve ritim.
   gelenekVeSonuc: Gelenekle ilişkisi ve şiirin öne çıkan yönü.
 sira: 11
-oneCikan: false
 # true: hiçbir zaman yayımlama; false: tarih geldiğinde yayımla
 taslak: true

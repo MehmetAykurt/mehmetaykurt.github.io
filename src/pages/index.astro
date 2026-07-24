@@ -2,60 +2,53 @@
 import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { getCollection } from "astro:content";
-import { siirYayindaMi } from "../utils/yayin";
+import {
+  siirYayindaMi,
+  tariheGoreYenidenEskiye
+} from "../utils/yayin";
 
-interface OneCikanIcerik {
+interface YeniSiir {
   baslik: string;
   adres: string;
-  baglantiMetni: string;
-  dizeler?: string[];
+  dizeler: string[];
 }
 
-const siirler = (
-  await getCollection("siirler", ({ data }) => siirYayindaMi(data))
-).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+interface SonEklenenIcerik {
+  baslik: string;
+  adres: string;
+  tarih: Date;
+  sira: number;
+}
 
-const videolar = (
-  await getCollection("videolar", ({ data }) => !data.taslak)
-).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
+const siirler = await getCollection(
+  "siirler",
+  ({ data }) => siirYayindaMi(data)
+);
 
-const oneCikanIcerikler: OneCikanIcerik[] = [
-  ...videolar
-    .filter((video) => video.data.oneCikan)
-    .map((video) => ({
-      baslik: video.data.baslik,
-      adres: `/videolar/${video.id}.html`,
-      baglantiMetni: "İzle"
-    })),
-  ...siirler
-    .filter((siir) => siir.data.oneCikan)
-    .map((siir) => ({
-      baslik: siir.data.baslik,
-      adres: `/siirler/${siir.id}.html`,
-      baglantiMetni: "Devamını oku",
-      dizeler: siir.data.siirMetni
-        .split(/\n\s*\n/)[0]
-        .split("\n")
-        .map((dize) => dize.trim())
-        .filter(Boolean)
-    }))
-];
+const yeniSiirler: YeniSiir[] = [...siirler]
+  .sort((birinci, ikinci) =>
+    tariheGoreYenidenEskiye(birinci.data, ikinci.data)
+  )
+  .slice(0, 5)
+  .map((siir) => ({
+    baslik: siir.data.baslik,
+    adres: `/siirler/${siir.id}.html`,
+    dizeler: siir.data.siirMetni
+      .split(/\n\s*\n/)[0]
+      .split("\n")
+      .map((dize) => dize.trim())
+      .filter(Boolean)
+  }));
 
-const sonEklenenIcerikler = [
-  ...[...videolar]
-    .sort((birinci, ikinci) => ikinci.data.sira - birinci.data.sira)
-    .slice(0, 1)
-    .map((video) => ({
-      baslik: video.data.baslik,
-      adres: `/videolar/${video.id}.html`
-    })),
-  ...[...siirler]
-    .sort((birinci, ikinci) => ikinci.data.sira - birinci.data.sira)
-    .map((siir) => ({
-      baslik: siir.data.baslik,
-      adres: `/siirler/${siir.id}.html`
-    }))
-].slice(0, 10);
+const sonEklenenIcerikler: SonEklenenIcerik[] = siirler
+  .map((siir) => ({
+    baslik: siir.data.baslik,
+    adres: `/siirler/${siir.id}.html`,
+    tarih: siir.data.tarih,
+    sira: siir.data.sira
+  }))
+  .sort(tariheGoreYenidenEskiye)
+  .slice(0, 10);
 ---
 
 <SiteLayout
@@ -72,24 +65,22 @@ const sonEklenenIcerikler = [
     </p>
   </section>
 
-  <section aria-labelledby="icerik-listesi-basligi" class="icerik-listesi">
-    <h2 id="icerik-listesi-basligi">Öne Çıkan İçerikler</h2>
+  <section aria-labelledby="yeni-siirler-basligi" class="icerik-listesi">
+    <h2 id="yeni-siirler-basligi">Yeni Şiirler</h2>
     {
-      oneCikanIcerikler.map((icerik) => (
+      yeniSiirler.map((siir) => (
         <article class="icerik-karti">
-          <h3>{icerik.baslik}</h3>
-          {icerik.dizeler && (
-            <p>
-              {icerik.dizeler.map((dize, sira, dizeler) => (
-                <>
-                  {dize}
-                  {sira < dizeler.length - 1 && <br />}
-                </>
-              ))}
-            </p>
-          )}
+          <h3>{siir.baslik}</h3>
+          <p>
+            {siir.dizeler.map((dize, sira, dizeler) => (
+              <>
+                {dize}
+                {sira < dizeler.length - 1 && <br />}
+              </>
+            ))}
+          </p>
           <div class="baglanti-alani">
-            <a href={icerik.adres}>{icerik.baglantiMetni}</a>
+            <a href={siir.adres}>Devamını oku</a>
           </div>
         </article>
       ))

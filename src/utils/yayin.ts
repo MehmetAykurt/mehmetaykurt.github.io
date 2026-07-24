@@ -5,6 +5,11 @@ interface SiirYayinBilgisi {
   tarih: Date;
 }
 
+interface TarihliIcerik {
+  tarih: Date;
+  sira: number;
+}
+
 export function istanbulTarihiniYilAyGunOlarakAl(tarih = new Date()) {
   const parcalar = new Intl.DateTimeFormat("en", {
     timeZone: YAYIN_SAAT_DILIMI,
@@ -31,4 +36,13 @@ export function siirYayindaMi(
   const yayinTarihi = siir.tarih.toISOString().slice(0, 10);
 
   return !siir.taslak && yayinTarihi <= bugun;
+}
+
+export function tariheGoreYenidenEskiye(
+  birinci: TarihliIcerik,
+  ikinci: TarihliIcerik
+) {
+  const tarihFarki = ikinci.tarih.getTime() - birinci.tarih.getTime();
+
+  return tarihFarki || ikinci.sira - birinci.sira;
 }

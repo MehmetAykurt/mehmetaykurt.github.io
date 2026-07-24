@@ -1,0 +1,36 @@
+---
+import { youtubeVideoKimliginiAl } from "../utils/youtube";
+
+interface Props {
+  baslik: string;
+  sanatci: string;
+  youtubeAdresi: string;
+}
+
+const { baslik, sanatci, youtubeAdresi } = Astro.props;
+const videoKimligi = youtubeVideoKimliginiAl(youtubeAdresi);
+const gomuluVideoAdresi = `https://www.youtube.com/embed/${videoKimligi}`;
+const normalVideoAdresi = `https://www.youtube.com/watch?v=${videoKimligi}`;
+---
+
+<section aria-labelledby="video-kaydi-basligi" id="video-kaydi">
+  <h2 id="video-kaydi-basligi">Video Kaydı</h2>
+  <div class="video-cercevesi">
+    <iframe
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      src={gomuluVideoAdresi}
+      title={`${baslik} - ${sanatci}`}
+    ></iframe>
+  </div>
+  <p>
+    <a href={normalVideoAdresi}>Videoyu YouTube’da aç</a>
+  </p>
+  <p>
+    <a href="https://www.youtube.com/@m.aykurt">
+      Daha fazla videoya ulaşmak için YouTube kanalımı ziyaret edin.
+    </a>
+  </p>
+</section>
