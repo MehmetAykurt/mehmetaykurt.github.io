@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { siirAciklamasiOlustur } from "../utils/aciklama";
+import { siirYayindaMi } from "../utils/yayin";
 
 interface AramaKaydi {
   baslik: string;
@@ -87,7 +88,7 @@ const sabitSayfalar: AramaKaydi[] = [
 
 export const GET: APIRoute = async () => {
   const siirler = (
-    await getCollection("siirler", ({ data }) => !data.taslak)
+    await getCollection("siirler", ({ data }) => siirYayindaMi(data))
   ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 
   const siirKayitlari: AramaKaydi[] = siirler.map((siir) => ({

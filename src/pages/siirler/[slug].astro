@@ -6,6 +6,7 @@ import PoemArticle from "../../components/PoemArticle.astro";
 import ShareSection from "../../components/ShareSection.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { siirAciklamasiOlustur } from "../../utils/aciklama";
+import { siirYayindaMi } from "../../utils/yayin";
 
 interface GezintiOgesi {
   id: string;
@@ -20,7 +21,7 @@ interface Props {
 
 export async function getStaticPaths() {
   const siirler = (
-    await getCollection("siirler", ({ data }) => !data.taslak)
+    await getCollection("siirler", ({ data }) => siirYayindaMi(data))
   ).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 
   return siirler.map((siir, sira) => ({

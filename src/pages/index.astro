@@ -2,6 +2,7 @@
 import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
 import { getCollection } from "astro:content";
+import { siirYayindaMi } from "../utils/yayin";
 
 interface OneCikanIcerik {
   baslik: string;
@@ -10,9 +11,9 @@ interface OneCikanIcerik {
   dizeler?: string[];
 }
 
-const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sort(
-  (birinci, ikinci) => birinci.data.sira - ikinci.data.sira
-);
+const siirler = (
+  await getCollection("siirler", ({ data }) => siirYayindaMi(data))
+).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 
 const oneCikanIcerikler: OneCikanIcerik[] = [
   {

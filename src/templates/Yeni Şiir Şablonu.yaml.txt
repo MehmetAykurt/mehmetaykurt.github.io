@@ -1,6 +1,7 @@
 baslik: Şiirin Başlığı
 # Açıklama başlıktan otomatik üretilir. İstenirse en fazla 155 karakterlik
 # özel bir "aciklama" alanı eklenebilir.
+# Gelecekte bir tarih yazılırsa şiir, taslak false olduğunda o günü bekler.
 tarih: "2026-01-01"
 icerikTuru: Şiir
 anaTema: Şiirin ana teması
@@ -26,4 +27,5 @@ degerlendirme:
   gelenekVeSonuc: Gelenekle ilişkisi ve şiirin öne çıkan yönü.
 sira: 11
 oneCikan: false
+# true: hiçbir zaman yayımlama; false: tarih geldiğinde yayımla
 taslak: true

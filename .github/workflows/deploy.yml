@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "17 0 * * *"
+      timezone: "Europe/Istanbul"
   workflow_dispatch:
 
 permissions:
@@ -12,6 +15,32 @@ permissions:
   id-token: write
 
 jobs:
+  bakim:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Depoyu al
+        uses: actions/checkout@v7
+
+      - name: Gerekirse 45 günlük bakım kaydı oluştur
+        shell: bash
+        run: |
+          son_kayit_zamani="$(git log -1 --format=%ct)"
+          simdiki_zaman="$(date +%s)"
+          gecen_gun="$(( (simdiki_zaman - son_kayit_zamani) / 86400 ))"
+
+          if [ "$gecen_gun" -lt 45 ]; then
+            echo "Son depo kaydının üzerinden $gecen_gun gün geçti; bakım kaydı gerekmiyor."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Otomatik 45 günlük bakım kaydı"
+          git push origin HEAD:main
+
   build:
     runs-on: ubuntu-latest
     steps:

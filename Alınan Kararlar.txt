@@ -438,3 +438,24 @@ GITHUB DEPOSU TELİF VE KULLANIM BİLDİRİMİ
 - Astro ve diğer üçüncü taraf yazılım paketlerinin kendi lisans koşullarına
   tabi olduğu ayrıca belirtildi.
 - Depoya açık kaynak lisansı eklenmemesine karar verildi.
+
+PLANLI ŞİİR YAYINI VE OTOMATİK BAKIM
+
+24 Temmuz 2026 tarihinde şiirlerin belirlenen tarihte otomatik yayımlanması
+için planlı yayın sistemi eklendi.
+
+- "taslak: true" olan şiirler, tarihleri gelmiş olsa bile yayımlanmayacaktır.
+- "taslak: false" olan şiirlerden tarihi gelecekte bulunanlar yayın gününü
+  bekleyecektir.
+- "taslak: false" olan bir şiir, tarihi geldiğinde ana sayfa, şiir listesi,
+  kendi sayfası, site içi arama ve sitemap içinde otomatik olarak yer alacaktır.
+- Yayın tarihi kontrolleri Türkiye'nin Europe/Istanbul saat dilimine göre
+  yapılacaktır.
+- GitHub Pages iş akışı her gün Türkiye saatiyle 00.17'de çalışarak yayın
+  tarihi gelen şiirler için siteyi yeniden oluşturacaktır.
+- Public GitHub deposunda zamanlanmış görevlerin 60 günlük hareketsizlik
+  nedeniyle kapanmaması için son depo kaydının yaşı her gün denetlenecektir.
+- Son depo kaydının üzerinden 45 gün geçtiğinde dosyaları değiştirmeyen boş bir
+  otomatik bakım kaydı main dalına gönderilecektir.
+- Otomatik bakım kaydından sonra yerel bilgisayar GitHub'ın gerisinde görünürse
+  yeni çalışmaya başlamadan önce GitHub Desktop'ta Pull origin yapılacaktır.

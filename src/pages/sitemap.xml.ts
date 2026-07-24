@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
+import { siirYayindaMi } from "../utils/yayin";
 
 const sabitSayfalar = [
   "",
@@ -13,7 +14,9 @@ const sabitSayfalar = [
 
 export const GET: APIRoute = async ({ site }) => {
   const siteAdresi = site ?? new URL("https://mehmetaykurt.com.tr");
-  const siirler = await getCollection("siirler", ({ data }) => !data.taslak);
+  const siirler = await getCollection("siirler", ({ data }) =>
+    siirYayindaMi(data)
+  );
   const yollar = [
     ...sabitSayfalar,
     ...siirler

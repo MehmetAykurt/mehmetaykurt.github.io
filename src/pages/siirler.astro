@@ -3,10 +3,11 @@ import { getCollection } from "astro:content";
 import CommentsSection from "../components/CommentsSection.astro";
 import ShareSection from "../components/ShareSection.astro";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { siirYayindaMi } from "../utils/yayin";
 
-const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sort(
-  (birinci, ikinci) => birinci.data.sira - ikinci.data.sira
-);
+const siirler = (
+  await getCollection("siirler", ({ data }) => siirYayindaMi(data))
+).sort((birinci, ikinci) => birinci.data.sira - ikinci.data.sira);
 ---
 
 <SiteLayout
@@ -81,4 +82,3 @@ const siirler = (await getCollection("siirler", ({ data }) => !data.taslak)).sor
     sayfaKimligi="siirler"
   />
 </SiteLayout>
-
