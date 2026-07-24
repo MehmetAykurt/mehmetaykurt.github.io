@@ -14,118 +14,6 @@ const adresParametreleri = new URLSearchParams(window.location.search);
 return adresParametreleri.get(ad) || "";
 }
 
-function fazlaBosluklariTemizle(metin) {
-return String(metin).replace(/\s+/g, " ").trim();
-}
-
-function adresiYolaCevir(adres) {
-try {
-const url = new URL(adres);
-let yol = url.pathname;
-
-if (yol === "/") {
-return "index.html";
-}
-
-if (yol.startsWith("/")) {
-yol = yol.slice(1);
-}
-
-return yol;
-} catch {
-return adres;
-}
-}
-
-function sayfaBasliginiAl(belge, adres) {
-const title = belge.querySelector("title")?.textContent || "";
-const temizTitle = fazlaBosluklariTemizle(title);
-
-if (adres === "index.html") {
-return "Ana Sayfa";
-}
-
-if (temizTitle.includes("|")) {
-return temizTitle.split("|")[0].trim();
-}
-
-return (
-belge.querySelector("main h1")?.textContent.trim() ||
-belge.querySelector("main h2")?.textContent.trim() ||
-temizTitle ||
-adres
-);
-}
-
-function anaMetniAl(belge) {
-const siirMetni = belge.querySelector(".metin-icerigi");
-
-if (siirMetni) {
-return siirMetni.textContent || "";
-}
-
-const main = belge.querySelector("main");
-
-if (!main) {
-return belge.body?.textContent || "";
-}
-
-const kopya = main.cloneNode(true);
-
-kopya
-.querySelectorAll(
-"#siir-gezinme-basligi, [aria-labelledby='siir-gezinme-basligi']"
-)
-.forEach((oge) => oge.remove());
-
-return kopya.textContent || "";
-}
-
-async function sitemapOku() {
-const cevap = await fetch("sitemap.xml?v=20260602-1", {
-cache: "no-store"
-});
-
-if (!cevap.ok) {
-throw new Error("sitemap.xml okunamadı");
-}
-
-const xmlMetni = await cevap.text();
-const ayristirici = new DOMParser();
-const belge = ayristirici.parseFromString(xmlMetni, "application/xml");
-
-const adresler = Array.from(belge.querySelectorAll("url loc"))
-.map((loc) => loc.textContent.trim())
-.filter(Boolean)
-.map(adresiYolaCevir)
-.filter((adres) => !adres.includes("arama.html"));
-
-return adresler;
-}
-
-async function sayfaOku(adres) {
-const cevap = await fetch(adres, {
-cache: "no-store"
-});
-
-if (!cevap.ok) {
-throw new Error(`${adres} okunamadı`);
-}
-
-const htmlMetni = await cevap.text();
-const ayristirici = new DOMParser();
-const belge = ayristirici.parseFromString(htmlMetni, "text/html");
-
-const baslik = sayfaBasliginiAl(belge, adres);
-const metin = anaMetniAl(belge);
-
-return {
-adres,
-baslik: fazlaBosluklariTemizle(baslik),
-metin: fazlaBosluklariTemizle(metin)
-};
-}
-
 function sonucOlustur(sonuc) {
 const madde = document.createElement("article");
 madde.className = "icerik-karti";
@@ -139,11 +27,89 @@ baglanti.textContent = sonuc.baslik;
 baslik.appendChild(baglanti);
 madde.appendChild(baslik);
 
+const tur = document.createElement("p");
+tur.className = "arama-sonucu-turu";
+tur.textContent = sonuc.anaTema
+? `${sonuc.tur} · ${sonuc.anaTema}`
+: sonuc.tur;
+madde.appendChild(tur);
+
+const aciklama = document.createElement("p");
+aciklama.className = "arama-sonucu-aciklama";
+aciklama.textContent = sonuc.aciklama;
+madde.appendChild(aciklama);
+
 return madde;
 }
 
-function listeSayfasiMi(adres) {
-return adres === "index.html" || adres === "siirler.html" || adres === "videolar.html" || adres === "erisilebilirlik.html";
+async function aramaDizininiOku() {
+const cevap = await fetch("/arama-dizini.json", {
+cache: "no-cache"
+});
+
+if (!cevap.ok) {
+throw new Error("Arama dizini okunamadı");
+}
+
+return cevap.json();
+}
+
+function eslesmePuaniHesapla(kayit, temizSorgu, arananKelimeler) {
+const alanlar = {
+baslik: metniTemizle(kayit.baslik),
+tur: metniTemizle(kayit.tur),
+anaTema: metniTemizle(kayit.anaTema || ""),
+konu: metniTemizle(kayit.konu || ""),
+aciklama: metniTemizle(kayit.aciklama),
+metin: metniTemizle(kayit.metin)
+};
+const tumMetin = Object.values(alanlar).join(" ");
+
+if (!arananKelimeler.every((kelime) => tumMetin.includes(kelime))) {
+return 0;
+}
+
+let puan = 1;
+
+if (alanlar.baslik === temizSorgu) {
+puan += 1000;
+} else if (alanlar.baslik.startsWith(temizSorgu)) {
+puan += 800;
+} else if (alanlar.baslik.includes(temizSorgu)) {
+puan += 600;
+}
+
+if (alanlar.anaTema === temizSorgu) {
+puan += 500;
+} else if (alanlar.anaTema.includes(temizSorgu)) {
+puan += 400;
+}
+
+if (alanlar.konu.includes(temizSorgu)) {
+puan += 300;
+}
+
+if (alanlar.tur === temizSorgu) {
+puan += 250;
+}
+
+if (alanlar.aciklama.includes(temizSorgu)) {
+puan += 200;
+}
+
+if (alanlar.metin.includes(temizSorgu)) {
+puan += 100;
+}
+
+arananKelimeler.forEach((kelime) => {
+if (alanlar.baslik.includes(kelime)) puan += 40;
+if (alanlar.tur.includes(kelime)) puan += 35;
+if (alanlar.anaTema.includes(kelime)) puan += 30;
+if (alanlar.konu.includes(kelime)) puan += 20;
+if (alanlar.aciklama.includes(kelime)) puan += 10;
+});
+
+return puan;
 }
 
 async function aramaYap(sorgu) {
@@ -153,34 +119,22 @@ if (!temizSorgu) {
 return [];
 }
 
-const sayfaAdresleri = await sitemapOku();
-const sonuclar = [];
+const arananKelimeler = temizSorgu.split(/\s+/).filter(Boolean);
+const aramaDizini = await aramaDizininiOku();
 
-for (const adres of sayfaAdresleri) {
-try {
-const sayfa = await sayfaOku(adres);
-
-const baslikteVar = metniTemizle(sayfa.baslik).includes(temizSorgu);
-const metindeVar = metniTemizle(sayfa.metin).includes(temizSorgu);
-
-if (!baslikteVar && !metindeVar) {
-continue;
+return aramaDizini
+.map((kayit) => ({
+...kayit,
+puan: eslesmePuaniHesapla(kayit, temizSorgu, arananKelimeler)
+}))
+.filter((kayit) => kayit.puan > 0)
+.sort((birinci, ikinci) => {
+if (ikinci.puan !== birinci.puan) {
+return ikinci.puan - birinci.puan;
 }
 
-if (listeSayfasiMi(sayfa.adres) && !baslikteVar) {
-continue;
-}
-
-sonuclar.push({
-adres: sayfa.adres,
-baslik: sayfa.baslik
+return birinci.sira - ikinci.sira;
 });
-} catch (hata) {
-console.warn(hata.message);
-}
-}
-
-return sonuclar;
 }
 
 async function aramaSayfasiniHazirla() {
@@ -203,7 +157,7 @@ aramaDurumu.textContent =
 return;
 }
 
-aramaDurumu.textContent = "Sayfalar aranıyor lütfen bekleyin.";
+aramaDurumu.textContent = "Arama yapılıyor, lütfen bekleyin.";
 
 try {
 const sonuclar = await aramaYap(sorgu);

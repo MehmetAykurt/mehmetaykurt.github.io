@@ -371,3 +371,24 @@ bırakılacaktır. Bu nedenle:
 
 Silinen dosyalar Git geçmişinde bulunduğu için ihtiyaç hâlinde geri
 alınabilir.
+
+ARAMA SİSTEMİNİN BÜYÜMEYE HAZIRLANMASI
+
+24 Temmuz 2026 tarihinde, şiirlerin ve ileride eklenecek roman içeriklerinin
+sayısı arttığında aramanın yavaşlamaması için site içi arama sistemi
+yenilendi.
+
+- Arama sırasında sitemap içindeki bütün sayfaların tek tek indirilmesi
+  kaldırıldı.
+- Astro, her derlemede arama-dizini.json dosyasını otomatik oluşturmaktadır.
+- Yayımlanan şiirlerin başlık, açıklama, tür, ana tema, konu, şiir metni ve
+  edebî değerlendirme alanları arama dizinine otomatik eklenmektedir.
+- Taslak durumundaki şiirler arama sonuçlarına alınmamaktadır.
+- Türkçe karakterleri dikkate alan arama korunmuştur; örneğin "gonul"
+  sorgusu "Gönül" ifadesini bulmaktadır.
+- Sonuçlar başlık, tür, ana tema, konu, açıklama ve metin eşleşmelerine göre
+  önem sırasına konmaktadır.
+- Sonuç kartlarında içerik türü, varsa ana tema ve kısa açıklama
+  gösterilmektedir.
+- Yeni bir şiir eklendiğinde arama dizini için ayrıca elle işlem yapılması
+  gerekmemektedir.

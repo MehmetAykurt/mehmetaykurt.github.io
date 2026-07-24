@@ -292,6 +292,15 @@ color: var(--renk-vurgu-koyu);
 line-height: 1.35;
 }
 
+.arama-sonucu-turu {
+color: var(--renk-ikincil-yazi);
+font-weight: 700;
+}
+
+.arama-sonucu-aciklama {
+margin-top: 0.5rem;
+}
+
 .metin-icerigi {
 max-width: 36rem;
 margin: 0 auto;
