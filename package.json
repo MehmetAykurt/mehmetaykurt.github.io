@@ -2,6 +2,7 @@
   "name": "mehmetaykurt-com-tr",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@11.9.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
